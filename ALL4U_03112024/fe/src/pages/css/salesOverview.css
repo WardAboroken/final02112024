@@ -1,0 +1,182 @@
+/* #region Date Picker Styling */
+/*==================================
+=     Date Picker Styling          =
+==================================*/
+.date-range-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 30px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.date-range-picker label {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--label-color);
+}
+
+.date-range-picker input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  transition: border-color 0.3s ease;
+}
+
+.date-range-picker input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+/* #endregion */
+/* #region Chart Selection Button Styling */
+.chart-selection {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto; /* Centers the element */
+  width: 60%; /* Sets the width to 60% of the container */
+}
+
+.chart-selection button {
+  flex: 1; /* Ensures each button takes equal width within the container */
+  padding: 10px 15px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.chart-selection button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.chart-selection button:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--primary-color);
+}
+
+.chart-selection button.active {
+  background-color: var(--secondary-color);
+  color: #fff;
+  transform: none;
+}
+/* #endregion */
+
+/* #region Graph Container */
+/*==================================
+=         Graph Container          =
+==================================*/
+.graph-section {
+  background-color: #fff;
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow);
+  margin: 30px auto;
+  max-width: 1200px;
+}
+
+.graph-section .section-title {
+  color: var(--primary-color);
+  text-align: left;
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.graph-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.graph-box {
+  width: 30%;
+  min-width: 300px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  border-radius: 12px;
+}
+/* #endregion */
+
+/* #region Chart Container Styling */
+/*==================================
+=      Chart Container Styling     =
+==================================*/
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.chart-item {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  background-color: var(--hover-color);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--chart-box-shadow);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 20px;
+}
+
+.chart-item h3 {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+
+/* Chart Item Hover Effect */
+.chart-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+/* #endregion */
+
+/* #region Responsive Adjustments */
+@media (max-width: 768px) {
+  .date-range-picker {
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .graph-section {
+    padding: 20px;
+  }
+
+  .chart-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-item {
+    width: 80%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+}
+/* #endregion */

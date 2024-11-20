@@ -1,0 +1,187 @@
+/* #region General container styling */
+
+/* Container for the entire cart page */
+.basket-cart-container {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+  
+}
+
+/* Individual group container styling */
+.group-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+/* #endregion */
+
+/* #region Simple Title SectionMain Styling */
+.basketCart-sectionMain {
+  z-index: 1; /* Place the section above other overlapping content */
+  position: relative;
+padding-top: 250px;
+  overflow: hidden;
+}
+
+/* Hero content styling */
+.hero-content h1 {
+  font-size: 32px; /* Set a slightly larger font size for emphasis */
+  color: #333; /* Use a neutral, elegant color */
+  font-weight: 600; /* Slightly bold the text for prominence */
+  margin: 0;
+  letter-spacing: 1px; /* Add slight spacing between letters for a cleaner look */
+}
+/* #endregion Simple Title SectionMain Styling */
+
+/* #region Empty Cart Message Styling */
+.empty-cart-message {
+  padding: 20px; /* Add padding for spacing */
+  text-align: center; /* Center-align the text */
+  font-size: 20px; /* Increase font size for emphasis */
+  color: #555; /* Use a softer, neutral color */
+  background-color: #f9f9f9; /* Light background to make the message stand out */
+  border-radius: 8px; /* Round the corners for a softer look */
+  margin: 20px auto; /* Add top and bottom margin, center horizontally */
+  max-width: 600px; /* Limit the width of the message */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+/* #endregion Empty Cart Message Styling */
+
+/* #region Cart item styling */
+/* Styling for the cart items section */
+.cart-section {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-right: 20px;
+  flex: 2; /* Makes the cart section take up more space */
+}
+
+/* Header for the cart section */
+.cart-section h3 {
+  color: #131348;
+}
+
+/* Individual cart item styling */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+}
+
+/* Image styling for each cart item */
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Controls for each cart item (quantity, price, remove button) */
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Remove button styling */
+.remove-button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 25%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove button hover effect */
+.remove-button:hover {
+  background-color: #843917;
+}
+/* #endregion */
+
+/* #region Payment section styling */
+/* Styling for the checkout section */
+.checkout-section {
+  background-color: #212148;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1; /* Makes the checkout section take up less space */
+  text-align: center;
+}
+
+/* Header for the checkout section */
+.checkout-section h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Total amount styling */
+.checkout-section p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* PayPal button container styling */
+.paypal-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PayPal button styling */
+.paypal-buttons {
+  width: 100%;
+  max-width: 350px;
+}
+
+/* Styling for the custom PayPal button */
+.paypal-button-container button {
+  width: 100%;
+  height: 50px;
+  background-color: #009cde;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the PayPal button */
+.paypal-button-container button:hover {
+  background-color: #007bb5;
+}
+/* #endregion */
+
+/* #region Mobile responsiveness */
+/* Responsive adjustments for mobile view */
+@media (max-width: 768px) {
+  /* Stack items and PayPal vertically on mobile */
+  .group-container {
+    flex-direction: column;
+  }
+
+  /* Add spacing to the checkout section in mobile view */
+  .checkout-section {
+    margin-top: 20px;
+  }
+}
+/* #endregion */

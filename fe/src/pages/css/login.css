@@ -1,0 +1,113 @@
+/* #region Reset styles */
+/* Resetting default box-sizing, margin, and padding for consistency across browsers */
+html, body, * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%; /* Ensures that the html and body take the full height of the viewport */
+}
+
+/* #endregion Reset styles */
+
+/* #region Background and Body Styles */
+/* Styling for the background of the login page */
+.login-body {
+  background-image: url("../../assets/images/artist photographer photography david welch-1.jpeg");
+  background-size: cover; /* The image will cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  min-height: 100vh; /* Full viewport height */
+  display: flex; /* Flexbox to align the form in the center */
+  align-items: center; /* Vertical center alignment */
+  justify-content: center; /* Horizontal center alignment */
+  position: relative; /* To allow for absolute positioning if needed */
+}
+
+/* #endregion Background and Body Styles */
+
+/* #region Main container styles */
+/* Styling for the login form container */
+.login-container {
+  width: 90%; /* Full width for small devices */
+  max-width: 400px; /* Limits the maximum width */
+  padding: 40px; /* Inner padding for spacing */
+  background-color: #ffffff; /* White background for the form */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 180px; /* Ensure space around the form for small screens */
+}
+
+/* #endregion Main container styles */
+
+/* #region Heading (h2) styles */
+/* Styling for the form's heading */
+.login-container h2 {
+  font-size: 2.4rem; /* Larger font size for heading */
+  color: #333; /* Darker text color for visibility */
+  text-align: center; /* Center-align the heading */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+/* #endregion Heading (h2) styles */
+
+/* #region Input field styles */
+/* Styling for the input fields in the form */
+.login-container input {
+  width: 100%; /* Full width input fields */
+  padding: 12px; /* Padding inside the input fields */
+  margin-bottom: 20px; /* Space below each input field */
+  border: 1px solid #cccccc; /* Light gray border */
+  border-radius: 6px; /* Rounded corners */
+  font-size: 16px; /* Standard font size for readability */
+}
+
+/* #endregion Input field styles */
+
+/* #region Link styles (Forgot Password) */
+/* Styling for the 'Forgot Password' link */
+.login-container a.menuItem_forgotPassword {
+  display: block; /* Block display for proper spacing */
+  text-align: right; /* Align text to the right */
+  color: #5b4121; /* Custom brown color for the link */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+/* Styling for the hover effect on the 'Forgot Password' link */
+.login-container a.menuItem_forgotPassword:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* #endregion Link styles */
+
+/* #region Button styles */
+/* Styling for the submit button */
+.login-container button {
+  width: 100%; /* Full width for the button */
+  padding: 12px; /* Padding inside the button */
+  background-color: black; /* Black background */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 6px; /* Rounded corners */
+  font-size: 16px; /* Standard font size */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Styling for the hover effect on the button */
+.login-container button:hover {
+  background-color: #004080; /* Darker blue background on hover */
+}
+
+/* #endregion Button styles */
+
+/* #region Error/success message styles */
+/* Styling for error or success messages */
+.login-container p {
+  font-size: 1.6rem; /* Standard font size */
+  color: red; /* Red color for error messages (can be customized) */
+  text-align: center; /* Center-align the message */
+}
+
+/* #endregion Error/success message styles */

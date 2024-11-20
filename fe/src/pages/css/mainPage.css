@@ -1,0 +1,168 @@
+/* #region Main Content Layout */
+.mainPage-body{
+margin-top: 50px;
+margin-bottom:150px ;
+}
+
+.main-content .content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+  padding: 20px;
+  gap: 20px; /* Add space between text and image */
+}
+
+/* #region Introduction Text (left side) */
+.introduction {
+  width: 50%; /* Left half for the text */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-left: 80px; /* Space between the text and image */
+  padding-top: 10px;
+
+}
+
+.introduction h1 {
+  font-size: 2.4rem;
+  font-weight: 700; /* Bold text */
+  margin-bottom: 20px; /* Space below heading */
+}
+
+.introduction p {
+  font-size: 1.6rem; /* Standard text size */
+  line-height: 1.6; /* Improved line spacing for readability */
+}
+/* #endregion Introduction Text */
+
+/* #region Image Section (right side) */
+.products-image {
+  width: 50%; /* Right half for the image */
+  text-align: right; /* Align image to the right */
+}
+
+.products-image img {
+  max-width: 100%; /* Ensure image fits its container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Add rounded corners */
+  margin-left: 20%;
+}
+/* #endregion Image Section */
+
+/* #region Responsive Adjustments */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column; /* Stack the text and image vertically on smaller screens */
+    align-items: center; /* Center the text and image */
+  }
+
+  .introduction,
+  .products-image {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .products-image img {
+    max-width: 80%; /* Scale image down on smaller screens */
+  }
+}
+/* #endregion Responsive Adjustments */
+
+/* #region Random Products Section */
+.random-products {
+  margin-top: 40px;
+  text-align: center;
+  width: 80%; /* Control width of the section */
+  margin: 0 auto; /* Center the section horizontally */
+}
+
+.random-products .section-title {
+  color: #853f14;
+  font-size: 2.4rem;
+  margin-bottom: 20px; /* Space below title */
+  margin-top: 120px;
+  font-weight: 600; /* Semi-bold title */
+}
+/* #endregion Random Products Section */
+
+/* #region Arrow Buttons for Carousel */
+.arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between arrows */
+  position: relative;
+  width: 100%; /* Ensure it spans the whole section */
+}
+
+/* Styling for left and right arrow buttons */
+.arrow {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%; /* Round buttons */
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 50%; /* Position arrow vertically in the center */
+  transform: translateY(-50%); /* Adjust for perfect alignment */
+  z-index: 10; /* Ensure buttons appear on top of content */
+}
+
+.arrow-left {
+  left: -40px; /* Move left arrow outside the container */
+}
+
+.arrow-right {
+  right: -40px; /* Move right arrow outside the container */
+}
+
+.arrow:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+/* #endregion Arrow Buttons */
+
+/* #region Product Carousel */
+.products-container {
+  display: flex;
+  overflow-x: auto; /* Allow horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scroll effect */
+  gap: 20px; /* Space between product cards */
+  padding: 10px;
+  white-space: nowrap; /* Prevent line breaks between items */
+}
+
+.products-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+/* #endregion Product Carousel */
+
+/* #region Product Card Styling */
+.product-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center;
+  flex: 0 0 250px; /* Fixed width for each card */
+  white-space: normal; /* Allow text wrapping */
+}
+
+.product-card img {
+  max-width: 100%; /* Ensure image fits the card */
+  height: 200px; /* Fixed height */
+  object-fit: cover; /* Crop image to fit */
+  margin-bottom: 15px; /* Space between image and text */
+}
+
+.product-name {
+  font-size: 1.8rem;
+  font-weight: 600; /* Semi-bold for emphasis */
+  margin-bottom: 10px; /* Space below product name */
+}
+
+.product-price {
+  color: #b03a2e; /* Blue price text */
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+/* #endregion Product Card Styling */

@@ -1,0 +1,169 @@
+/* #region Background and Body Styles */
+/* Styling the profile edit background with an image, centering the form */
+.editCustomerProfile-body {
+  background-image: url("../../assets/images/backgound1.jpeg"); /* Replace with your background image */
+  background-size: cover; /* Ensures the background covers the entire viewport */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents image repetition */
+  min-height: 100vh; /* Sets minimum height to full viewport height */
+  display: flex; /* Flexbox to center align content */
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  padding: 20px; /* Adds padding around the form */
+}
+/* #endregion Background and Body Styles */
+
+/* #region Main Container Styles */
+/* Styling for the main form container */
+.editCustomerProfile-container {
+  width: 100%; /* Full width */
+  max-width: 500px; /* Maximum width of the container */
+  padding: 40px; /* Inner padding for the container */
+  background-color: #ffffff; /* White background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-top: 30px; /* Adds spacing from the top */
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px); /* Subtle blur effect for better focus */
+}
+/* #endregion Main Container Styles */
+
+/* #region Heading (h2) Styles */
+/* Styling the header of the form */
+.editCustomerProfile-container h2 {
+  font-size: 2.4rem; /* Large font size for emphasis */
+  color: #333; /* Dark text color for readability */
+  text-align: center; /* Centers the heading */
+}
+/* #endregion Heading (h2) Styles */
+
+/* #region File Input Styling */
+/* Styling the file input for profile picture upload */
+input[type="file"] {
+  display: block; /* Block-level element for full width */
+  width: 100%; /* Full width */
+  margin-bottom: 20px; /* Space below the input */
+  padding: 10px; /* Padding inside the input */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f8f8f8; /* Light background color */
+  font-size: 1.5rem; /* Larger font size for better usability */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+/* #endregion File Input Styling */
+
+/* #region Image Preview Styling */
+/* Styling for the profile image preview */
+.imagePreview {
+  display: block; /* Block-level element */
+  width: 120px; /* Fixed width */
+  height: 120px; /* Fixed height */
+  border-radius: 50%; /* Circular shape */
+  object-fit: cover; /* Ensures image covers the entire element */
+  margin: 15px auto 25px; /* Center alignment with margin */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a floating effect */
+}
+/* #endregion Image Preview Styling */
+
+/* #region Input Fields Styling */
+/* Styling for text, email, password, and select input fields */
+.name,
+.UserName,
+.email,
+.phoneNumber,
+.psw,
+.confirmPassword,
+select {
+  width: 100%; /* Full width */
+  padding: 12px; /* Inner padding for spacing */
+  margin-bottom: 20px; /* Space below each field */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background */
+  font-size: 1.5rem; /* Larger font size */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Focus styles for input fields */
+.name:focus,
+.UserName:focus,
+.email:focus,
+.phoneNumber:focus,
+.psw:focus,
+.confirmPassword:focus,
+select:focus {
+  border-color: #0056b3; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+/* #endregion Input Fields Styling */
+
+/* #region Form Field Styling */
+/* General styling for form fields */
+.form-field {
+  margin-bottom: 20px; /* Space below each field */
+  text-align: left; /* Aligns text to the left */
+}
+
+.form-field label {
+  display: block; /* Block-level element */
+  margin-bottom: 8px; /* Space below the label */
+  font-weight: bold; /* Bold font for labels */
+  color: #555; /* Darker color for readability */
+}
+/* #endregion Form Field Styling */
+
+/* #region Submit Button Styling */
+/* Styling for the submit button */
+button[type="submit"] {
+  width: 100%; /* Full width */
+  padding: 14px; /* Inner padding */
+  background-color: #332816; /* Dark background color */
+  color: white; /* White text */
+  font-size: 2rem; /* Larger font size */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
+  font-weight: bold; /* Bold text */
+}
+
+/* Hover and active styles for submit button */
+button[type="submit"]:hover {
+  background-color: #004494; /* Darker blue on hover */
+  transform: scale(1.02); /* Slight enlargement */
+}
+
+button[type="submit"]:active {
+  background-color: #003366; /* Darker shade on active */
+}
+/* #endregion Submit Button Styling */
+
+/* #region Error Message Styling */
+/* Styling for error messages */
+.error {
+  color: #ff4d4d; /* Red color for errors */
+  text-align: center; /* Center alignment */
+  margin-bottom: 20px; /* Space below the error */
+  font-size: 0.9rem; /* Smaller font size */
+}
+/* #endregion Error Message Styling */
+
+/* #region Responsive Design */
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .editCustomerProfile-container {
+    padding: 25px; /* Reduced padding */
+  }
+
+  .name,
+  .UserName,
+  .email,
+  .phoneNumber,
+  .psw,
+  .confirmPassword,
+  select,
+  button[type="submit"] {
+    font-size: 1.5rem; /* Adjusted font size for mobile */
+  }
+}
+/* #endregion Responsive Design */

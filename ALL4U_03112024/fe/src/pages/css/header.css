@@ -1,0 +1,29 @@
+.slogan{
+  color: #745038;
+  font-size: xx-large;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu li a {
+  background-color: #706963;
+	padding: 2rem;
+	border-radius: 20%;
+	color: white;
+}
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.menu li a .active {
+  font-weight: bold;
+  color: #706963;
+	background-color: white;
+}

@@ -1,0 +1,76 @@
+/* #region Category List Container */
+/* Styling for the category list container */
+.category-list {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(120px, 1fr)
+  ); /* Evenly spaced columns */
+  grid-gap: 10px; /* Increase spacing between items */
+}
+/* #endregion Category List Container */
+
+/* #region Category List Heading */
+/* Styling for the category list heading */
+.category-list h3 {
+  color: #745038;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  grid-column: span 2; /* Make the heading span across columns */
+}
+/* #endregion Category List Heading */
+
+/* #region Category Labels */
+/* Styling for the individual category labels */
+.category-list label {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+}
+
+/* Hover effect for labels */
+.category-list label:hover {
+  background-color: #e7e7e7;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+/* #endregion Category Labels */
+
+/* #region Input Checkbox Styling */
+/* Styling for the input checkboxes */
+.category-list input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2); /* Enlarge the checkbox */
+}
+
+/* Styling for checked labels */
+.category-list input[type="checkbox"]:checked + label {
+  border-color: #745038;
+  background-color: #ececec;
+}
+/* #endregion Input Checkbox Styling */
+
+/* #region Responsive Adjustments */
+/* Adjustments for responsive design on smaller screens */
+@media (max-width: 768px) {
+  .category-list {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .category-list h3 {
+    grid-column: span 1; /* Adjust the heading to fit smaller screens */
+  }
+}
+/* #endregion Responsive Adjustments */

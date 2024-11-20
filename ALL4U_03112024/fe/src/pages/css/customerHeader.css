@@ -1,0 +1,296 @@
+/* #region General Variables */
+/* CSS Variables for Consistency and Reusability */
+:root {
+  --primary-bg: rgba(51, 51, 51, 0.95);
+  --secondary-bg: #333;
+  --text-color: white;
+  --hover-bg: #555;
+  --highlight-color: #0056b3;
+  --font-size-large: 24px;
+  --font-size-medium: 16px;
+  --font-size-small: 14px;
+  --padding-large: 15px;
+  --padding-medium: 10px;
+  --padding-small: 6px;
+}
+/* #endregion General Variables */
+
+/* #region Header Styling */
+/* General Header Styling */
+.header {
+  display: flex;
+  justify-content: space-between; /* Distribute space between left, center, and right sections */
+  align-items: center;
+  padding: var(--padding-large) 30px;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease; /* Smooth transition for hover and resize */
+}
+
+/* Center Section for the Main Page Button */
+.center-section {
+  flex: 1; /* Allow the center section to grow and take available space */
+  display: flex;
+  justify-content: center; /* Center the button within this section */
+}
+
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1; /* Allow the left section to grow and take space */
+}
+
+.menu {
+  position: relative;
+}
+
+/* Dropdown Buttons Accessibility and Interactivity */
+.toggleButton {
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: var(--font-size-medium);
+  transition: color 0.3s ease;
+}
+
+.toggleButton:hover,
+.toggleButton:focus {
+  color: #ddd;
+}
+
+.toggleButton:focus {
+  outline: 2px solid var(--highlight-color);
+  outline-offset: 2px;
+}
+
+/* Dropdown Button Icons for Open and Close States */
+.toggleButton[aria-expanded="true"]::after {
+  content: "▲";
+  margin-left: 5px;
+}
+
+.toggleButton[aria-expanded="false"]::after {
+  content: "▼";
+  margin-left: 5px;
+}
+/* #endregion Left Section Styling */
+
+/* #region Dropdown Styling */
+/* Dropdown Menu Styling */
+.dropdownContent,
+.profileDropdownContent {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background-color: var(--secondary-bg);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.dropdownContent.show,
+.profileDropdownContent.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdownContent a {
+  color: var(--text-color);
+  padding: var(--padding-small) var(--padding-medium);
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdownContent a:hover,
+.dropdownContent a:focus {
+  background-color: var(--hover-bg);
+}
+/* #endregion Dropdown Styling */
+
+/* #region Search Box Styling */
+.searchBox {
+  display: flex;
+  margin-top: 15px;
+}
+
+.searchBox input {
+  font-size: var(--font-size-medium);
+  border: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  height: 30px; /* Set a fixed height */
+  box-sizing: border-box;
+  padding-left: 10px; /* Horizontal padding only */
+}
+
+.searchBox button {
+  font-size: var(--font-size-medium);
+  cursor: pointer;
+  border: none;
+  background-color: var(--hover-bg);
+  color: var(--text-color);
+  border-radius: 0 4px 4px 0;
+  height: 30px; /* Same height as input */
+  padding: 0 15px; /* Horizontal padding only */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  transition: background-color 0.3s ease;
+}
+
+.searchBox button:hover,
+.searchBox button:focus {
+  background-color: #777;
+}
+/* #endregion Search Box Styling */
+
+/* #region Main Page Button Styling */
+/* Shop Main Page Button */
+.shopMainPage-button {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  padding: var(--padding-medium) var(--padding-large);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.shopMainPage-button:hover,
+.shopMainPage-button:focus {
+  background-color: #cdbcac;
+  transform: scale(1.05);
+}
+/* #endregion Main Page Button Styling */
+
+/* #region Right Section Styling */
+/* Right Section: Profile and Basket */
+.right-section {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Allow the right section to grow and take space */
+  justify-content: flex-end; /* Align items to the end */
+}
+
+.profileInfo,
+.basketCart {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.profileInfo .menuItem,
+.basketCart .menuItem {
+  display: flex;
+  align-items: center;
+  margin-left: var(--padding-medium);
+  border-radius: 50%;
+  background-color: var(--secondary-bg);
+  transition: background-color 0.3s ease;
+}
+
+.profileInfo .menuItem img,
+.basketCart .menuItem img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+/* #endregion Right Section Styling */
+
+/* #region Profile Dropdown Menu */
+/* Profile Dropdown Menu */
+.profileDropdownContent {
+  text-align: left; /* Align text to the left for a cleaner look */
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 200px;
+  width: 260px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  background-color: #333; /* Darker background for a sleek look */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #555; /* Add a subtle border */
+}
+
+/* Profile Information Table */
+.profileDropdownContent table {
+  width: 100%;
+  margin-bottom: 15px;
+  color: #534a4a; /* Softer color for text */
+}
+
+.profileDropdownContent th {
+  text-align: left;
+  font-weight: bold;
+  padding-bottom: 8px;
+  color: #534a4a; /* Slightly lighter color for headings */
+}
+
+.profileDropdownContent td {
+  text-align: right;
+  padding-bottom: 8px;
+}
+
+/* Profile Dropdown Buttons */
+.profileDropdownContent .editProfileBtn,
+.profileDropdownContent .ordersHistoryBtn,
+.profileDropdownContent .logoutBtn {
+  display: block;
+  width: 90%; /* Make the buttons consistent in width */
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #573717;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.profileDropdownContent .editProfileBtn:hover,
+.profileDropdownContent .ordersHistoryBtn:hover,
+.profileDropdownContent .logoutBtn:hover {
+  background-color: #cdbcac;
+  transform: scale(1.02);
+}
+/* #endregion Profile Dropdown Menu */
+
+/* #region Media Queries for Responsiveness */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--padding-medium);
+  }
+
+  .left-section,
+  .right-section {
+    margin-bottom: var(--padding-medium);
+  }
+
+  .searchBox input {
+    width: 100%;
+  }
+
+  .shopMainPage-button {
+    font-size: var(--font-size-medium);
+  }
+}
+/* #endregion Media Queries for Responsiveness */

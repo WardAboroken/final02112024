@@ -1,0 +1,48 @@
+/* #region Slogan Styling */
+/* Styling the slogan text */
+.slogan {
+  color: #b67e4c; /* Updated color for better contrast */
+  font-size: 2.4rem; /* Adjusted font size for better visibility */
+  font-weight: bold; /* Bold font for emphasis */
+  margin-right: 20px; /* Adds spacing to the right */
+}
+/* #endregion Slogan Styling */
+
+/* #region Menu Styling */
+/* Menu container styling */
+.menu {
+  display: flex; /* Aligns menu items in a row */
+  gap: 1.5rem; /* Spacing between menu items */
+}
+
+/* Remove default list styling from menu items */
+.menu li {
+  list-style-type: none; /* Removes bullet points */
+}
+
+/* #region Link Styling */
+/* Styling for each menu link */
+.menu li a {
+  background-color: #706963; /* Background color for links */
+  padding: 0.8rem 1.5rem; /* Adjusted padding for a more button-like appearance */
+  border-radius: 8px; /* Rounded corners for links */
+  color: white; /* Text color */
+  text-decoration: none; /* Removes underline from links */
+  display: inline-block; /* Ensures padding applies correctly */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Active link styling */
+.menu li a.active {
+  font-weight: bold; /* Emphasizes the active link */
+  color: #706963; /* Changes text color when active */
+  background-color: white; /* Changes background color when active */
+}
+
+/* Hover effect for links */
+.menu li a:hover {
+  background-color: #8a847d; /* Background color on hover */
+  color: #ffffff; /* Text color on hover */
+}
+/* #endregion Link Styling */
+/* #endregion Menu Styling */

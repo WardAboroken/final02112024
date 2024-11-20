@@ -1,0 +1,47 @@
+/* #region Type Container */
+.typeContainer {
+  text-align: center;
+  margin: 50px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* #endregion */
+
+/* #region Type Container Heading */
+.typeContainer h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+/* #endregion */
+
+/* #region Button Container */
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+/* #endregion */
+
+/* #region Navigation Link Button */
+.nav-link {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #3a2d28;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #0056b3;
+}
+/* #endregion */

@@ -1,0 +1,230 @@
+/* #region Product Page Body */
+
+
+/* #region Main Container for Product Page */
+.productPage-container {
+  max-width:  1000px; /* Maximum width of the content */
+  margin: 0 auto; /* Centers the container */
+  padding: 40px 0; /* Padding around the content */
+  display: flex;
+  flex-direction: column; /* Layout in a vertical direction */
+  gap: 10px;
+  font-family: Arial, sans-serif;
+  
+}
+/* #endregion Main Container for Product Page */
+
+/* #region Chosen Product Section */
+.chosenProduct-section {
+  display: flex;
+  flex-direction: row; /* Side-by-side layout for image and details */
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #fff; /* White background for product section */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  width: 100%; /* Full width of container */
+  margin: 0 auto;
+  gap: 40px; /* Space between image and product details */
+  margin-top: 30px; /* Adds spacing from the top */
+  margin-bottom: 30px;
+}
+/* #endregion Chosen Product Section */
+
+/* #region Product Image Styling */
+.product-image {
+  width: 400px; /* Fixed width for product image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow around image */
+}
+/* #endregion Product Image Styling */
+
+/* #region Product Details Section */
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between product details */
+  text-align: left; /* Align text to the left */
+  width: 100%;
+  max-width: 600px; /* Maximum width of product details */
+}
+
+.product-details h1 {
+  font-size: 2.5rem;
+  color: #333; /* Darker color for product name */
+}
+
+.product-details p {
+  color: #444; /* Slightly lighter color for product details */
+  line-height: 1.8; /* Line height for readability */
+}
+
+.product-details p span {
+  font-weight: bold;
+  color: #333; /* Bold text for labels such as Price, Size, etc. */
+}
+/* #endregion Product Details Section */
+
+/* #region Add to Cart Button */
+.add-to-cart-button {
+  background-color: #000; /* Black background */
+  color: white;
+  padding: 15px 30px; /* Padding for button */
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 6px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover */
+  margin-top: 20px;
+  align-self: flex-start; /* Align button to the left */
+}
+
+.add-to-cart-button:hover {
+  background-color: #333;
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.add-to-cart-button:active {
+  background-color: #555;
+  transform: scale(0.98); /* Slight shrink effect when clicked */
+}
+/* #endregion Add to Cart Button */
+
+/* #region Similar Products Section */
+.similarProducts-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.similarProducts-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Layout styling for product cards in the Similar Products section */
+.similarProducts-section ul {
+  list-style: none;
+  display: grid; /* Grid layout for product cards */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* Responsive grid */
+  gap: 20px;
+  padding: 0;
+}
+
+/* Individual product card styling */
+.similarProducts-section li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover effect for product cards */
+.similarProducts-section li:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+}
+
+/* Image styling for product cards */
+.similarProducts-section li img {
+  width: 100%; /* Full width of the card */
+  height: 200px;
+  object-fit: cover; /* Maintain aspect ratio */
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Product name in related products */
+.similarProducts-section li h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333; /* Darker color for product name */
+  margin-bottom: 10px;
+}
+
+/* Price styling in related products */
+.similarProducts-section li p {
+  font-size: 1rem;
+  color: #666; /* Lighter color for price */
+  margin-bottom: 5px;
+}
+
+/* Optional description section in related products (hidden by default) */
+.similarProducts-section li ul {
+  display: none; /* Hidden unless expanded */
+  font-size: 0.9rem;
+  color: #999;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  text-align: left;
+}
+/* #endregion Similar Products Section */
+
+/* #region Responsive Design */
+@media screen and (max-width: 768px) {
+  /* Responsive layout for similar products section */
+  .similarProducts-section ul {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(160px, 1fr)
+    ); /* Smaller columns for mobile */
+  }
+
+  .similarProducts-section li img {
+    height: 150px; /* Smaller images on mobile */
+  }
+
+  /* Chosen product section adjusts for mobile screens */
+  .chosenProduct-section {
+    flex-direction: column; /* Stack image and details vertically */
+    align-items: center; /* Center the content */
+  }
+
+  .product-image {
+    max-width: 100%; /* Make image full width on smaller screens */
+  }
+
+  .product-details {
+    max-width: 100%;
+    text-align: center; /* Center text on mobile */
+  }
+
+  .add-to-cart-button {
+    width: 100%; /* Make the button full width on mobile */
+  }
+}
+/* #endregion Responsive Design */
+
+/* #region Product Not Found Section */
+.section-not-found {
+  text-align: center;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.section-not-found .hero-content h1 {
+  font-size: 2.5rem;
+  color: #333; /* Darker text color */
+  margin-bottom: 20px;
+}
+
+.section-not-found .hero-content p {
+  font-size: 1.2rem;
+  color: #666; /* Lighter text color */
+}
+/* #endregion Product Not Found Section */

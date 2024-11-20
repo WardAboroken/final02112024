@@ -1,0 +1,76 @@
+.shop-owner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff; /* Background color for the header */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.header-left {
+  flex: 1; /* Space for logo or shop name */
+}
+
+.shop-logo {
+  color: #000; /* Logo color */
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header-center {
+  flex: 2; /* Center navigation links */
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px; /* Space between links */
+}
+
+.nav-link {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.nav-link.active-link {
+  border-bottom: 2px solid #000; /* Active link indicator */
+}
+
+.header-right {
+  flex: 1; /* Space for user profile */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profileInfo .menuItem {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.profileInfo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.profileDropdownContent {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.profileDropdownContent.show {
+  display: block; /* Show dropdown when active */
+}

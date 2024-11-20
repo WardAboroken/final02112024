@@ -1,0 +1,40 @@
+/* userTypeSelection.css */
+.typeContainer {
+  text-align: center;
+  margin: 50px;
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside the container */
+  background-color: #f9f9f9; /* Background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  width: 25%; /* Width of the container */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+}
+
+.typeContainer h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #3a2d28;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #0056b3;
+}

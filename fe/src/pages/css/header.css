@@ -1,0 +1,42 @@
+/* #region Slogan Styling */
+.slogan {
+  color: #745038;
+  font-size: xx-large;
+}
+/* #endregion */
+
+/* #region Menu Container Styling */
+.menu {
+  display: flex;
+  gap: 1rem;
+}
+/* #endregion */
+
+/* #region Menu Link Styling */
+.menu li a {
+  background-color: #706963;
+  padding: 2rem;
+  border-radius: 20%;
+  color: white;
+}
+/* #endregion */
+
+/* #region List Item Styling */
+li {
+  list-style-type: none;
+}
+/* #endregion */
+
+/* #region Link Styling */
+a {
+  text-decoration: none;
+}
+/* #endregion */
+
+/* #region Active Menu Link Styling */
+.menu li a .active {
+  font-weight: bold;
+  color: #706963;
+  background-color: white;
+}
+/* #endregion */
