@@ -1,0 +1,237 @@
+[33mcommit 149cd584be18861e473e0514c30fcaebebae1b63[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Ward Aboroken <wardaboroken@gmail.com>
+Date:   Wed Nov 20 19:14:49 2024 +0200
+
+    Remove node_modules.zip and update .gitignore
+
+ .gitignore | Bin [31m16[m -> [32m58[m bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+[33mcommit aa53900fe416375e0a14c53eef285d92aec3208d[m
+Author: Ward Aboroken <wardaboroken@gmail.com>
+Date:   Wed Nov 20 19:09:37 2024 +0200
+
+    Remove .zip files and update .gitignore
+
+ .gitignore | Bin [31m0[m -> [32m16[m bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+[33mcommit 7f76bb5329c2ff3d10b508323416b7be5a044130[m
+Author: Ward Aboroken <wardaboroken@gmail.com>
+Date:   Wed Nov 20 18:56:13 2024 +0200
+
+    last version before submitting to school
+
+ ALL4U_03112024.zip  | Bin [31m14939051[m -> [32m0[m bytes
+ be/node_modules.zip | Bin [31m17235480[m -> [32m0[m bytes
+ fe/node_modules.zip | Bin [31m150680382[m -> [32m0[m bytes
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+[33mcommit 8d819b0a472a296d526a742596f3cc9a8b6f5c77[m
+Author: Ward Aboroken <wardaboroken@gmail.com>
+Date:   Wed Nov 20 14:13:40 2024 +0200
+
+    first commit
+
+ .vscode/settings.json                              |     3 [32m+[m
+ ALL4U_03112024.zip                                 |   Bin [31m0[m -> [32m14939051[m bytes
+ ALL4U_03112024/.vscode/settings.json               |     3 [32m+[m
+ ALL4U_03112024/be/controllers/loginController.js   |    84 [32m+[m
+ .../be/controllers/userInfoController.js           |    89 [32m+[m
+ ALL4U_03112024/be/database/db.js                   |    27 [32m+[m
+ .../be/database/queries/add-user-customer.js       |    52 [32m+[m
+ ALL4U_03112024/be/database/queries/add-user.js     |    37 [32m+[m
+ ALL4U_03112024/be/database/queries/addOrder.js     |    86 [32m+[m
+ ALL4U_03112024/be/database/queries/addProduct.js   |   103 [32m+[m
+ .../be/database/queries/addUserShopOwner.js        |    65 [32m+[m
+ .../be/database/queries/checkIfIsNormalUser.js     |    28 [32m+[m
+ .../be/database/queries/checkIfUserExistInDB.js    |    28 [32m+[m
+ .../be/database/queries/deleteProduct.js           |    30 [32m+[m
+ ALL4U_03112024/be/database/queries/findUser.js     |    39 [32m+[m
+ ALL4U_03112024/be/database/queries/get-products.js |    33 [32m+[m
+ .../be/database/queries/getAllProducts.js          |    29 [32m+[m
+ .../be/database/queries/getCustomerInfo.js         |    32 [32m+[m
+ .../be/database/queries/getUsersStatus2.js         |    80 [32m+[m
+ .../be/database/queries/getWorkerInfo.js           |    31 [32m+[m
+ ALL4U_03112024/be/database/queries/login.js        |    47 [32m+[m
+ ALL4U_03112024/be/database/queries/recoveryPsw.js  |    44 [32m+[m
+ ALL4U_03112024/be/database/queries/resetPsw.js     |    59 [32m+[m
+ .../be/database/queries/updateCustomerProfile.js   |    73 [32m+[m
+ .../be/database/queries/updateOrderStatusInDB.js   |    46 [32m+[m
+ .../be/database/queries/updateProduct.js           |   129 [32m+[m
+ .../be/database/queries/updateProductStatus.js     |    31 [32m+[m
+ .../be/database/queries/updateShopOwnerProfile.js  |    62 [32m+[m
+ ALL4U_03112024/be/database/query.js                |    17 [32m+[m
+ ALL4U_03112024/be/package-lock.json                |  2154 [32m+[m
+ ALL4U_03112024/be/package.json                     |    29 [32m+[m
+ ALL4U_03112024/be/routes/addNewUser.js             |    47 [32m+[m
+ ALL4U_03112024/be/routes/addOrDeleteProduct.js     |    49 [32m+[m
+ ALL4U_03112024/be/routes/admin.js                  |   101 [32m+[m
+ ALL4U_03112024/be/routes/cart.js                   |   116 [32m+[m
+ ALL4U_03112024/be/routes/login.js                  |    12 [32m+[m
+ ALL4U_03112024/be/routes/order.js                  |   571 [32m+[m
+ ALL4U_03112024/be/routes/productsHandler.js        |   126 [32m+[m
+ ALL4U_03112024/be/routes/recoveryPsw.js            |    54 [32m+[m
+ ALL4U_03112024/be/routes/shop.js                   |    95 [32m+[m
+ ALL4U_03112024/be/routes/updateProfile.js          |    50 [32m+[m
+ ALL4U_03112024/be/routes/userInfo.js               |    14 [32m+[m
+ ALL4U_03112024/be/server.js                        |    57 [32m+[m
+ ALL4U_03112024/be/uploads/1.jpg                    |   Bin [31m0[m -> [32m90041[m bytes
+ ALL4U_03112024/be/uploads/1725625199226.jpeg       |   Bin [31m0[m -> [32m60630[m bytes
+ ALL4U_03112024/be/uploads/1725625545716.jpeg       |   Bin [31m0[m -> [32m60630[m bytes
+ ALL4U_03112024/be/uploads/1725625667879.jpeg       |   Bin [31m0[m -> [32m60630[m bytes
+ ALL4U_03112024/be/uploads/1725627315622.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1725636159700.jpeg       |   Bin [31m0[m -> [32m38071[m bytes
+ ALL4U_03112024/be/uploads/1725660294123.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1725660789882.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1725661068947.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1725661566032.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1725662506669.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1725699141908.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1725699178604.png        |   Bin [31m0[m -> [32m43567[m bytes
+ ALL4U_03112024/be/uploads/1726334797361.jpeg       |   Bin [31m0[m -> [32m41603[m bytes
+ ALL4U_03112024/be/uploads/1726348322221.png        |   Bin [31m0[m -> [32m63522[m bytes
+ ALL4U_03112024/be/uploads/1726414664136.jpeg       |   Bin [31m0[m -> [32m49027[m bytes
+ ALL4U_03112024/be/uploads/1726849435963.jpg        |   Bin [31m0[m -> [32m38353[m bytes
+ ALL4U_03112024/be/uploads/1726849470222.jpg        |   Bin [31m0[m -> [32m21448[m bytes
+ ALL4U_03112024/be/uploads/1726942961815.jpg        |   Bin [31m0[m -> [32m26709[m bytes
+ ALL4U_03112024/be/uploads/1726942997305.jpg        |   Bin [31m0[m -> [32m21448[m bytes
+ ALL4U_03112024/be/uploads/1726943104196.jpg        |   Bin [31m0[m -> [32m38344[m bytes
+ ALL4U_03112024/be/uploads/1726943242448.jpg        |   Bin [31m0[m -> [32m42583[m bytes
+ ALL4U_03112024/be/uploads/1726943247489.jpg        |   Bin [31m0[m -> [32m42583[m bytes
+ ALL4U_03112024/be/uploads/1726943339141.jpg        |   Bin [31m0[m -> [32m42583[m bytes
+ ALL4U_03112024/be/uploads/1727480731401.jpg        |   Bin [31m0[m -> [32m19120[m bytes
+ ALL4U_03112024/be/uploads/1727481989025.jpeg       |   Bin [31m0[m -> [32m6582[m bytes
+ ALL4U_03112024/be/uploads/1727537633268.jpg        |   Bin [31m0[m -> [32m19120[m bytes
+ ALL4U_03112024/be/uploads/1727537664142.jpeg       |   Bin [31m0[m -> [32m6582[m bytes
+ ALL4U_03112024/be/uploads/1727628753678.jpeg       |   Bin [31m0[m -> [32m45858[m bytes
+ ALL4U_03112024/be/uploads/1727628861416.jpeg       |   Bin [31m0[m -> [32m82419[m bytes
+ ALL4U_03112024/be/uploads/1727628866193.jpeg       |   Bin [31m0[m -> [32m82419[m bytes
+ ALL4U_03112024/be/uploads/1727628871744.jpeg       |   Bin [31m0[m -> [32m82419[m bytes
+ ALL4U_03112024/be/uploads/1727628874027.jpeg       |   Bin [31m0[m -> [32m82419[m bytes
+ ALL4U_03112024/be/uploads/1727628874499.jpeg       |   Bin [31m0[m -> [32m82419[m bytes
+ ALL4U_03112024/be/uploads/1727628948142.jpeg       |   Bin [31m0[m -> [32m82419[m bytes
+ ALL4U_03112024/be/uploads/1730210605053.webp       |   Bin [31m0[m -> [32m27898[m bytes
+ ALL4U_03112024/be/uploads/1730210618764.jpg        |   Bin [31m0[m -> [32m53906[m bytes
+ ALL4U_03112024/be/uploads/1730210914140.jpeg       |   Bin [31m0[m -> [32m6582[m bytes
+ ALL4U_03112024/be/uploads/1730211146726.webp       |   Bin [31m0[m -> [32m35228[m bytes
+ ALL4U_03112024/be/uploads/1730211503264.avif       |   Bin [31m0[m -> [32m12025[m bytes
+ ALL4U_03112024/be/uploads/1730499397621.webp       |   Bin [31m0[m -> [32m157280[m bytes
+ ALL4U_03112024/be/uploads/1730499608266.jpg        |   Bin [31m0[m -> [32m44714[m bytes
+ ALL4U_03112024/be/uploads/1730499703605.jpg        |   Bin [31m0[m -> [32m145218[m bytes
+ ALL4U_03112024/be/uploads/1730499815934.jpg        |   Bin [31m0[m -> [32m21410[m bytes
+ ALL4U_03112024/be/uploads/1730499904155.jpg        |   Bin [31m0[m -> [32m43521[m bytes
+ ALL4U_03112024/be/uploads/1730499983926.jpg        |   Bin [31m0[m -> [32m56335[m bytes
+ ALL4U_03112024/be/uploads/1730500773004.jpg        |   Bin [31m0[m -> [32m39129[m bytes
+ ALL4U_03112024/be/uploads/1730501059756.jpg        |   Bin [31m0[m -> [32m39169[m bytes
+ ALL4U_03112024/be/uploads/1730501160213.jpg        |   Bin [31m0[m -> [32m27502[m bytes
+ ALL4U_03112024/be/uploads/1730501254242.jpg        |   Bin [31m0[m -> [32m32695[m bytes
+ ALL4U_03112024/be/uploads/1730501686249.jpg        |   Bin [31m0[m -> [32m54253[m bytes
+ ALL4U_03112024/be/uploads/210210210.jpg            |   Bin [31m0[m -> [32m111210[m bytes
+ ALL4U_03112024/be/uploads/870258369.jpg            |   Bin [31m0[m -> [32m85090[m bytes
+ ALL4U_03112024/be/uploads/872654525.jpg            |   Bin [31m0[m -> [32m90041[m bytes
+ ALL4U_03112024/be/uploads/875236236.jpg            |   Bin [31m0[m -> [32m19120[m bytes
+ ALL4U_03112024/be/uploads/adidasShoes.webp         |   Bin [31m0[m -> [32m39336[m bytes
+ ALL4U_03112024/be/uploads/mansory.jpeg             |   Bin [31m0[m -> [32m6582[m bytes
+ ALL4U_03112024/be/uploads/nikeShoes.png            |   Bin [31m0[m -> [32m63522[m bytes
+ ALL4U_03112024/be/uploads/user_profile.jpeg        |   Bin [31m0[m -> [32m8809[m bytes
+ ALL4U_03112024/be/uploads/wardosh.jpg              |   Bin [31m0[m -> [32m346664[m bytes
+ ALL4U_03112024/be/utils/paypal.js                  |    12 [32m+[m
+ ALL4U_03112024/be/utils/paypalInfo.env             |     2 [32m+[m
+ ALL4U_03112024/be/utils/sendAcception.js           |    34 [32m+[m
+ ALL4U_03112024/be/utils/sendEmail.js               |    33 [32m+[m
+ ALL4U_03112024/be/utils/sendRejection.js           |    34 [32m+[m
+ ALL4U_03112024/fe/.gitignore                       |    23 [32m+[m
+ ALL4U_03112024/fe/README.md                        |    70 [32m+[m
+ ALL4U_03112024/fe/package-lock.json                | 40663 [32m++++++++++++++[m
+ ALL4U_03112024/fe/package.json                     |    53 [32m+[m
+ ALL4U_03112024/fe/public/favicon.ico               |   Bin [31m0[m -> [32m3870[m bytes
+ ALL4U_03112024/fe/public/index.html                |    42 [32m+[m
+ ALL4U_03112024/fe/public/logo192.png               |   Bin [31m0[m -> [32m5347[m bytes
+ ALL4U_03112024/fe/public/logo512.png               |   Bin [31m0[m -> [32m9664[m bytes
+ ALL4U_03112024/fe/public/manifest.json             |    25 [32m+[m
+ ALL4U_03112024/fe/public/robots.txt                |     3 [32m+[m
+ ALL4U_03112024/fe/src/App.js                       |   122 [32m+[m
+ ALL4U_03112024/fe/src/asserts/images/2.jpg         |   Bin [31m0[m -> [32m77807[m bytes
+ .../images/5bbd1e6c7c1efe7b262de47f577276c5.jpg    |   Bin [31m0[m -> [32m67060[m bytes
+ ALL4U_03112024/fe/src/asserts/images/870258369.jpg |   Bin [31m0[m -> [32m90041[m bytes
+ ...ist photographer photography david welch-1.jpeg |   Bin [31m0[m -> [32m31042[m bytes
+ .../fe/src/asserts/images/background.jpeg          |   Bin [31m0[m -> [32m47269[m bytes
+ .../fe/src/asserts/images/facebook-svgrepo-com.svg |     4 [32m+[m
+ .../fe/src/asserts/images/gmail-svgrepo-com.svg    |     2 [32m+[m
+ .../asserts/images/instagram-167-svgrepo-com.svg   |    19 [32m+[m
+ ALL4U_03112024/fe/src/asserts/images/logo.svg      |    72 [32m+[m
+ ALL4U_03112024/fe/src/asserts/images/map.png       |   Bin [31m0[m -> [32m190951[m bytes
+ ALL4U_03112024/fe/src/asserts/images/map.svg       |    27 [32m+[m
+ .../fe/src/asserts/images/shopping-cart.png        |   Bin [31m0[m -> [32m11568[m bytes
+ .../fe/src/asserts/images/shopping_cart_icon.jpeg  |   Bin [31m0[m -> [32m11518[m bytes
+ .../fe/src/asserts/images/user_profile.jpeg        |   Bin [31m0[m -> [32m8809[m bytes
+ .../fe/src/asserts/images/warmth_background.jpeg   |   Bin [31m0[m -> [32m47504[m bytes
+ .../fe/src/asserts/images/whatsapp-svgrepo-com.svg |     4 [32m+[m
+ ALL4U_03112024/fe/src/assets/images/210210210.jpg  |   Bin [31m0[m -> [32m90041[m bytes
+ ...ist photographer photography david welch-1.jpeg |   Bin [31m0[m -> [32m31042[m bytes
+ .../fe/src/assets/images/backgound1.jpeg           |   Bin [31m0[m -> [32m67784[m bytes
+ .../fe/src/assets/images/background.jpeg           |   Bin [31m0[m -> [32m47269[m bytes
+ ALL4U_03112024/fe/src/assets/images/download.jpeg  |   Bin [31m0[m -> [32m20962[m bytes
+ .../fe/src/assets/images/facebook-svgrepo-com.svg  |     4 [32m+[m
+ .../fe/src/assets/images/gmail-svgrepo-com.svg     |     2 [32m+[m
+ ALL4U_03112024/fe/src/assets/images/imeg.jpg       |   Bin [31m0[m -> [32m51930[m bytes
+ ALL4U_03112024/fe/src/assets/images/imeg2.jpg      |   Bin [31m0[m -> [32m69885[m bytes
+ ALL4U_03112024/fe/src/assets/images/img3.jpg       |   Bin [31m0[m -> [32m71357[m bytes
+ ALL4U_03112024/fe/src/assets/images/imgg.jpg       |   Bin [31m0[m -> [32m125663[m bytes
+ ALL4U_03112024/fe/src/assets/images/imgg2.jpg      |   Bin [31m0[m -> [32m42621[m bytes
+ ALL4U_03112024/fe/src/assets/images/imgimg.jpg     |   Bin [31m0[m -> [32m69560[m bytes
+ ALL4U_03112024/fe/src/assets/images/imog.jpg       |   Bin [31m0[m -> [32m72488[m bytes
+ .../assets/images/instagram-167-svgrepo-com.svg    |    19 [32m+[m
+ ALL4U_03112024/fe/src/assets/images/logo.svg       |    72 [32m+[m
+ ALL4U_03112024/fe/src/assets/images/map.png        |   Bin [31m0[m -> [32m190951[m bytes
+ ALL4U_03112024/fe/src/assets/images/map.svg        |    27 [32m+[m
+ .../fe/src/assets/images/shopping-cart.png         |   Bin [31m0[m -> [32m11568[m bytes
+ .../fe/src/assets/images/shopping_cart_icon.jpeg   |   Bin [31m0[m -> [32m11518[m bytes
+ .../fe/src/assets/images/user_profile.jpeg         |   Bin [31m0[m -> [32m8809[m bytes
+ .../fe/src/assets/images/warmth_background.jpeg    |   Bin [31m0[m -> [32m47504[m bytes
+ .../fe/src/assets/images/whatsapp-svgrepo-com.svg  |     4 [32m+[m
+ ALL4U_03112024/fe/src/components/AdminHeader.jsx   |   108 [32m+[m
+ .../fe/src/components/CustomerHeader.jsx           |   216 [32m+[m
+ ALL4U_03112024/fe/src/components/Footer.jsx        |    79 [32m+[m
+ ALL4U_03112024/fe/src/components/OutHeader.jsx     |    58 [32m+[m
+ .../fe/src/components/PayPalCheckoutButton.jsx     |   102 [32m+[m
+ ALL4U_03112024/fe/src/components/SalesOverview.jsx |   214 [32m+[m
+ .../fe/src/components/ShopOwnerHeader.jsx          |   140 [32m+[m
+ ALL4U_03112024/fe/src/constans.js                  |     1 [32m+[m
+ ALL4U_03112024/fe/src/index.js                     |    15 [32m+[m
+ ALL4U_03112024/fe/src/pages/AdminMainPage.jsx      |   229 [32m+[m
+ ALL4U_03112024/fe/src/pages/BasketCart.jsx         |   373 [32m+[m
+ ALL4U_03112024/fe/src/pages/CategoryPage.jsx       |   146 [32m+[m
+ .../fe/src/pages/CustomerOrdersHistory.jsx         |   158 [32m+[m
+ ALL4U_03112024/fe/src/pages/CustomerSignUp.jsx     |   260 [32m+[m
+ .../fe/src/pages/EditCustomerProfile.jsx           |   339 [32m+[m
+ .../fe/src/pages/EditShopOwnerProfile.jsx          |   216 [32m+[m
+ ALL4U_03112024/fe/src/pages/ForgotPassword.jsx     |    86 [32m+[m
+ ALL4U_03112024/fe/src/pages/Login.jsx              |    74 [32m+[m
+ ALL4U_03112024/fe/src/pages/MainPage.jsx           |   126 [32m+[m
+ ALL4U_03112024/fe/src/pages/ProductPage.jsx        |   173 [32m+[m
+ ALL4U_03112024/fe/src/pages/ResetPass.jsx          |    93 [32m+[m
+ ALL4U_03112024/fe/src/pages/ShopMainPage.jsx       |   160 [32m+[m
+ ALL4U_03112024/fe/src/pages/ShopOwnerMainPage.jsx  |   358 [32m+[m
+ .../fe/src/pages/ShopOwnerOrdersPage.jsx           |   331 [32m+[m
+ .../fe/src/pages/ShopOwnerProductsPage.jsx         |   589 [32m+[m
+ ALL4U_03112024/fe/src/pages/ShopOwnerSignUp.jsx    |   301 [32m+[m
+ ALL4U_03112024/fe/src/pages/UserTypeSelection.jsx  |    26 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/adminMainPage.css  |   136 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/basketCart.css     |   187 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/customerHeader.css |   296 [32m+[m
+ .../fe/src/pages/css/customerOrderHistory.css      |   136 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/customerSignup.css |    76 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/editProfile.css    |   169 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/forgotPassword.css |     4 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/header.css         |    29 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/index.css          |   223 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/insideHeader.css   |   155 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/login.css          |   113 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/mainPage.css       |   168 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/outHeader.css      |    48 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/productPage.css    |   230 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/salesOverview.css  |   182 [32m+[m
+ ALL4U_03112024/fe/src/pages/css/shopMainPage.css   |   167 [32m+[m
+ .../fe/src/pages/css/shopOwnerEditProfile.css
