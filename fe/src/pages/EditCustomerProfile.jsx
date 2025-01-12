@@ -12,41 +12,29 @@ const city_name_key = "שם_ישוב";
 const street_name_key = "שם_רחוב";
 
 function EditProfile() {
-  /* #region State Variables */
-  const [name, setName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-
-  // State for handling image uploads and previews
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState("");
-
-  // State for managing selected categories
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
-  // State for storing user info, including address and preferred categories
-  const [userInfo, setUserInfo] = useState({
+  // State Variables
+  const [formData, setFormData] = useState({
     name: "",
     userName: "",
     email: "",
     phoneNumber: "",
+    password: "",
+    newPassword: "",
+    confirmNewPassword: "",
+    selectedCity: "",
+    selectedStreet: "",
     profilePicturePath: "",
   });
 
-  // State for managing address selections
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [cities, setCities] = useState([]);
   const [streets, setStreets] = useState([]);
-  const [selectedCity, setSelectedCity] = useState("");
-  const [selectedStreet, setSelectedStreet] = useState("");
-  /* #endregion */
+  const [userInfo, setUserInfo] = useState({});
 
-  /* #region Constants */
   const categories = {
     Toys: 1,
     Clothing: 2,
@@ -61,31 +49,8 @@ function EditProfile() {
     Safety: 11,
     Beauty: 12,
   };
-  /* #endregion */
 
-  /* #region Handlers */
-  // Toggle category selection for the user
-  const handleCategoryChange = (categoryId) => {
-    const newSelectedCategories = selectedCategories.includes(categoryId)
-      ? selectedCategories.filter((id) => id !== categoryId)
-      : [...selectedCategories, categoryId];
-    setSelectedCategories(newSelectedCategories);
-  };
-
-  // Handle image upload and preview
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      setImage(file);
-      setImagePreview(URL.createObjectURL(file));
-    } else {
-      setError("Please select a valid image file.");
-    }
-  };
-  /* #endregion */
-
-  /* #region API Calls */
-  // Generic function to fetch data from a specified resource
+  // API Helper Functions
   const getData = useCallback((resource_id, q = "", limit = "100") => {
     return axios.get(api_url, {
       params: { resource_id, q, limit },
@@ -93,12 +58,10 @@ function EditProfile() {
     });
   }, []);
 
-  // Parse data from response based on a specific field name
   const parseResponse = useCallback((records = [], field_name) => {
     return records.map((record) => record[field_name].trim()).filter(Boolean);
   }, []);
 
-  // Fetch and populate cities for the dropdown
   const populateCities = useCallback(async () => {
     try {
       const citiesList = await getData(cities_resource_id);
@@ -108,7 +71,6 @@ function EditProfile() {
     }
   }, [getData, parseResponse]);
 
-  // Fetch and populate streets based on selected city
   const populateStreets = useCallback(
     async (city) => {
       try {
@@ -126,7 +88,6 @@ function EditProfile() {
     [getData, parseResponse]
   );
 
-  // Fetch user information and populate fields on component mount
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -136,6 +97,7 @@ function EditProfile() {
             "Content-Type": "application/json",
           },
         });
+
         if (!response.ok) throw new Error("Failed to fetch user info");
 
         const data = await response.json();
@@ -144,16 +106,18 @@ function EditProfile() {
           : JSON.parse(data.userInfo.preferredCategories || "[]");
 
         setUserInfo(data.userInfo);
-        setName(data.userInfo.name);
-        setUserName(data.userInfo.userName);
-        setEmail(data.userInfo.email);
-        setNumber(data.userInfo.phoneNumber);
+        setFormData({
+          name: data.userInfo.name,
+          userName: data.userInfo.userName,
+          email: data.userInfo.email,
+          phoneNumber: data.userInfo.phoneNumber,
+          selectedCity: data.userInfo.city || "",
+          selectedStreet: data.userInfo.street || "",
+        });
         setImagePreview(
           `${API_URL}/uploads/${data.userInfo.profilePicturePath}`
         );
         setSelectedCategories(categories);
-        setSelectedCity(data.userInfo.city || "");
-        setSelectedStreet(data.userInfo.street || "");
       } catch (error) {
         setError("Error fetching user info: " + error.message);
       }
@@ -162,181 +126,179 @@ function EditProfile() {
     fetchUserInfo();
     populateCities();
   }, [populateCities]);
-  /* #endregion */
 
-  /* #region Form Submission */
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    } else {
+      setError("Please select a valid image file.");
+    }
+  };
+
+  const handleCategoryChange = (categoryId) => {
+    const updatedCategories = selectedCategories.includes(categoryId)
+      ? selectedCategories.filter((id) => id !== categoryId)
+      : [...selectedCategories, categoryId];
+    setSelectedCategories(updatedCategories);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
     setSuccess("");
 
-    // Check if new passwords match
-    if (newPassword !== confirmNewPassword) {
-      window.alert("New passwords do not match. Please try again.");
+    if (
+      formData.newPassword &&
+      formData.newPassword !== formData.confirmNewPassword
+    ) {
+      setError("New passwords do not match.");
       return;
     }
 
-    // Create user data object for profile update
-    const userData = {
-      name: name || userInfo.name,
-      userName: userName || userInfo.userName,
-      email: email || userInfo.email,
-      phoneNumber: number || userInfo.phoneNumber,
-      password,
-      newPassword,
-      profilePicturePath: image || userInfo.profilePicturePath,
-      preferredCategories: selectedCategories,
-      address: `City: ${selectedCity}, Street: ${selectedStreet}`,
+    const updatedFields = {
+      userName: formData.userName, // Include userName
+      password: formData.password, // Include password
     };
+    console.log("updatedFields >> ", updatedFields);
 
-    // Send the updated data to the server
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] && formData[key] !== userInfo[key]) {
+        updatedFields[key] = formData[key];
+      }
+    });
+
+    if (selectedCategories.length) {
+      updatedFields.preferredCategories = JSON.stringify(selectedCategories);
+    }
+
     try {
-      const response = await fetch("/updateProfile/updateCustomerProfile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
+      const formDataToSend = new FormData();
+      Object.entries(updatedFields).forEach(([key, value]) => {
+        formDataToSend.append(key, value);
       });
 
-      if (!response.ok) {
-        const errorData = await response.text();
-        window.alert(`Update unsuccessful: ${errorData}`);
-        return;
+      if (image) {
+        formDataToSend.append("profilePicture", image);
       }
-      window.alert("Update Profile successful.");
-      // Optionally reset or refetch user info here
+
+      const response = await fetch("/updateProfile/updateCustomerProfile", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      if (!response.ok) throw new Error("Profile update failed");
+
+      setSuccess("Profile updated successfully!");
     } catch (error) {
-      window.alert("Update Profile unsuccessful. Please Try Again");
+      setError("Error updating profile: " + error.message);
     }
   };
-  /* #endregion */
 
   return (
     <div className="editCustomerProfile-body">
       <main className="editCustomerProfile-container">
-        <h2>Customer Profile Edit</h2>
+        <h2>Edit Profile</h2>
+        {success && <p className="success">{success}</p>}
+        {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
-          {/* Display profile image preview if available */}
           {imagePreview && (
             <img
               src={imagePreview}
-              alt="User Profile"
+              alt="Profile Preview"
               className="imagePreview"
             />
           )}
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+          <input type="file" onChange={handleImageChange} />
 
-          {/* Input fields for user information */}
           <input
-            className="name"
             type="text"
-            placeholder={userInfo.name}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleInputChange}
           />
           <input
-            className="UserName"
             type="text"
-            placeholder={userInfo.userName}
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            required
+            name="userName"
+            placeholder="Username"
+            value={formData.userName}
+            onChange={handleInputChange}
           />
           <input
-            className="email"
             type="email"
-            placeholder={userInfo.email}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleInputChange}
           />
           <input
-            className="phoneNumber"
             type="tel"
-            placeholder={userInfo.phoneNumber}
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            required
+            name="phoneNumber"
+            placeholder="Phone Number"
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
           />
           <input
-            className="psw"
             type="password"
+            name="password"
             placeholder="Current Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+            value={formData.password}
+            onChange={handleInputChange}
           />
           <input
-            className="confirmPassword"
             type="password"
+            name="newPassword"
             placeholder="New Password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            value={formData.newPassword}
+            onChange={handleInputChange}
           />
           <input
-            className="confirmPassword"
             type="password"
+            name="confirmNewPassword"
             placeholder="Confirm New Password"
-            value={confirmNewPassword}
-            onChange={(e) => setConfirmNewPassword(e.target.value)}
+            value={formData.confirmNewPassword}
+            onChange={handleInputChange}
           />
-          {error && <p className="error">{error}</p>}
-          {success && <p className="success">{success}</p>}
 
-          {/* City Selection */}
-          <div className="form-field">
-            <label>Select City:</label>
-            <input
-              name="selectedCity"
-              list="cities"
-              value={selectedCity}
-              onChange={(e) => {
-                setSelectedCity(e.target.value);
-                setSelectedStreet("");
-                populateStreets(e.target.value);
-              }}
-              required
-            />
-            <datalist id="cities">
-              {cities.map((city, index) => (
-                <option key={index} value={city} />
-              ))}
-            </datalist>
-          </div>
+          <input
+            type="text"
+            name="selectedCity"
+            placeholder="City"
+            value={formData.selectedCity}
+            onChange={(e) => {
+              handleInputChange(e);
+              populateStreets(e.target.value);
+            }}
+          />
+          <select
+            name="selectedStreet"
+            value={formData.selectedStreet}
+            onChange={handleInputChange}
+          >
+            <option value="">Select Street</option>
+            {streets.map((street, index) => (
+              <option key={index} value={street}>
+                {street}
+              </option>
+            ))}
+          </select>
 
-          {/* Street Selection */}
-          <div className="form-field" id="street-selection">
-            <label>Select Street:</label>
-            <select
-              id="street-choice"
-              name="selectedStreet"
-              value={selectedStreet}
-              onChange={(e) => setSelectedStreet(e.target.value)}
-              required
-            >
-              <option value="">Choose Street</option>
-              {streets.map((street, index) => (
-                <option key={index} value={street}>
-                  {street}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Category Selection */}
           <div className="category-list">
-            <h3>Select Your Favorite Categories:</h3>
-            {Object.entries(categories).map(([categoryName, categoryId]) => (
-              <label key={categoryId}>
+            {Object.entries(categories).map(([category, id]) => (
+              <label key={id}>
                 <input
                   type="checkbox"
-                  value={categoryId}
-                  checked={selectedCategories.includes(categoryId)}
-                  onChange={() => handleCategoryChange(categoryId)}
+                  checked={selectedCategories.includes(id)}
+                  onChange={() => handleCategoryChange(id)}
                 />
-                {categoryName}
+                {category}
               </label>
             ))}
           </div>

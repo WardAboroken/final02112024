@@ -8,65 +8,81 @@ async function updateCustomerProfile(user) {
     userName,
     email,
     phoneNumber,
-    password,
+    password, // Optional for profile picture update
     newPassword,
-    preferredCategories, // Array of preferred categories
-    address, // New address (city + street)
+    preferredCategories,
+    address,
+    profilePicturePath,
   } = user;
 
   try {
-    // Find the user by their username and password
-    const userinfo = {
-      userName: userName,
-      psw: password,
-    };
-    const findResult = await findUser(userinfo);
-
-    console.log("User found for profile update");
-
-    if (!findResult.success) {
-      return { success: false, message: "User not found" };
+    if (!userName) {
+      return { success: false, message: "userName is required." };
     }
 
-    // Ensure preferredCategories is an array or properly formatted string
-    const categories = Array.isArray(preferredCategories)
-      ? JSON.stringify(preferredCategories) // Convert array to JSON string
-      : preferredCategories; // Use as is if it's already a valid JSON string
+    // Dynamically build the query based on provided fields
+    let sql = "UPDATE users SET ";
+    const params = [];
 
-    // Start building the SQL query
-    let sql = `
-      UPDATE users 
-      SET name = ?, email = ?, phoneNumber = ?, preferredCategories = ?, address = ?
-    `;
-
-    // Prepare the parameters array
-    const params = [
-      name,
-      email,
-      phoneNumber,
-      categories, // Stored as JSON string in the database
-      address, // Add address to be updated
-    ];
-
-    // If a new password is provided, include it in the query
+    if (name) {
+      sql += "name = ?, ";
+      params.push(name);
+    }
+    if (email) {
+      sql += "email = ?, ";
+      params.push(email);
+    }
+    if (phoneNumber) {
+      sql += "phoneNumber = ?, ";
+      params.push(phoneNumber);
+    }
+    if (preferredCategories) {
+      const categories = Array.isArray(preferredCategories)
+        ? JSON.stringify(preferredCategories)
+        : preferredCategories;
+      sql += "preferredCategories = ?, ";
+      params.push(categories);
+    }
+    if (address) {
+      sql += "address = ?, ";
+      params.push(address);
+    }
+    if (profilePicturePath) {
+      sql += "profilePicturePath = ?, ";
+      params.push(profilePicturePath);
+    }
     if (newPassword) {
+      if (!password) {
+        return { success: false, message: "Current password is required." };
+      }
+
+      const userinfo = { userName, psw: password };
+      const findResult = await findUser(userinfo);
+
+      if (!findResult.success) {
+        return { success: false, message: "Invalid current password." };
+      }
+
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(newPassword, salt);
-      sql += ` , psw = ?`; // Add password field to the query
-      params.push(hashedPassword); // Add hashed password to the parameters
+      sql += "psw = ?, ";
+      params.push(hashedPassword);
     }
 
-    // Add the WHERE clause to update the correct user
-    sql += ` WHERE userName = ?`;
-    params.push(userName); // Add userName for the WHERE clause
+    // Remove the trailing comma and space
+    sql = sql.slice(0, -2);
+
+    // Add WHERE clause
+    sql += " WHERE userName = ?";
+    params.push(userName);
 
     // Execute the query
     await doQuery(sql, params);
 
-    return { success: true, message: "User updated successfully" };
+    return { success: true, message: "User updated successfully." };
   } catch (error) {
     console.error("Error updating user:", error);
-    return { success: false, message: "Error updating user in the database" };
+    return { success: false, message: "Error updating user in the database." };
   }
 }
 

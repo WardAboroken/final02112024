@@ -1,50 +1,117 @@
-// A router that connect us to the uppropiate query to help us update the user's profile according to it's type and editing
 const express = require("express");
+const multer = require("multer");
+const path = require("path");
 const updateCustomerProfile = require("../database/queries/updateCustomerProfile");
 const updateShopOwnerProfile = require("../database/queries/updateShopOwnerProfile");
+
 const router = express.Router();
 router.use(express.json());
 
-router.post("/updateCustomerProfile", async (req, res, next) => {
-  try {
-    const user = req.body;
-    const result = await updateCustomerProfile(user);
+// Multer setup for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Set the directory for uploads
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`); // Use timestamp to avoid file name collisions
+  },
+});
 
-    // Sending a response to the client
-    if (result.success) {
-      res.status(200).json({ success: true, message: "Update success!" });
-    } else {
-      res
-        .status(400)
-        .json({ success: false, message: result.message || "Update failed." });
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png/; // Restrict to image types
+    const extName = fileTypes.test(
+      path.extname(file.originalname).toLowerCase()
+    );
+    const mimeType = fileTypes.test(file.mimetype);
+
+    if (extName && mimeType) {
+      return cb(null, true);
     }
-  } catch (error) {
-    console.error("Error in updating profile:", error);
-    res
-      .status(500)
-      .json({
+    cb(new Error("Only images (jpeg, jpg, png) are allowed"));
+  },
+});
+
+// Helper function to format and log user payload
+const logPayload = (user) => {
+  console.log("User payload received:", JSON.stringify(user, null, 2));
+};
+
+// Update customer profile
+router.post(
+  "/updateCustomerProfile",
+  upload.single("profilePicture"),
+  async (req, res) => {
+    try {
+      const user = req.body;
+
+      // Attach only the file name if an image is uploaded
+      if (req.file) {
+        user.profilePicturePath = req.file.filename; // Save only the file name
+      }
+
+      logPayload(user);
+
+      const result = await updateCustomerProfile(user);
+
+      if (result.success) {
+        return res.status(200).json({
+          success: true,
+          message: "Customer profile updated successfully!",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: result.message || "Failed to update customer profile.",
+        });
+      }
+    } catch (error) {
+      console.error("Error in updating customer profile:", error);
+      return res.status(500).json({
         success: false,
-        error: "An error occurred while updating the user.",
+        message: "An error occurred while updating the customer profile.",
       });
-  }
-});
-
-
-// updateShopOwnerProfile
-router.post("/updateShopOwnerProfile", async (req, res, next) => {
-  try {
-    const user = req.body;
-    const result = await updateShopOwnerProfile(user);
-
-    // Sending a response to the client
-    if (result.success) {
-      res.status(200).json({ message: "Update success!" }); // Sending success message if addition is successful
-    } else {
-      res.status(400).json({ message: "Update faild." }); // Sending error message if user already exists
     }
-  } catch (error) {
-    res.status(500).json({ error: "An error occurred while update the user" });
   }
-});
+);
+
+// Update shop owner profile
+router.post(
+  "/updateShopOwnerProfile",
+  upload.single("profilePicture"),
+  async (req, res) => {
+    try {
+      const user = req.body;
+
+      // Attach only the file name if an image is uploaded
+      if (req.file) {
+        user.profilePicturePath = req.file.filename; // Save only the file name
+      }
+
+      logPayload(user);
+
+      const result = await updateShopOwnerProfile(user);
+
+      if (result.success) {
+        return res.status(200).json({
+          success: true,
+          message: "Shop owner profile updated successfully!",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: result.message || "Failed to update shop owner profile.",
+        });
+      }
+    } catch (error) {
+      console.error("Error in updating shop owner profile:", error);
+      return res.status(500).json({
+        success: false,
+        message: "An error occurred while updating the shop owner profile.",
+      });
+    }
+  }
+);
 
 module.exports = router;
