@@ -1,8 +1,8 @@
 // ShopOwnerHeader.jsx
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import user_profile from "../assets/images/user_profile.jpeg"; // Ensure the path is correct
 import "../pages/css/shopOwnerHeader.css"; // CSS styling for the header component
+import { API_URL } from "../constans.js"; // API base URL
 
 // Main component for the Shop Owner's Header
 const ShopOwnerHeader = () => {
@@ -13,7 +13,7 @@ const ShopOwnerHeader = () => {
     userName: "",
     email: "",
     phoneNumber: "",
-    image: "", // Profile image field
+    profilePicturePath: "", // Profile image field
   });
 
   // useEffect hook to fetch user information when the component mounts
@@ -92,7 +92,11 @@ const ShopOwnerHeader = () => {
         <div className="profileInfo">
           {/* Profile button to toggle profile dropdown */}
           <button className="menuItem" onClick={toggleProfileDropdown}>
-            <img src={userInfo.image || user_profile} alt="User Profile" />
+            <img
+              src={`${API_URL}/uploads/${userInfo.profilePicturePath}`}
+              alt={userInfo.userName}
+              width="50"
+            />
           </button>
 
           {/* Profile Dropdown */}
