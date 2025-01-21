@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./css/index.css";
 import "./css/adminMainPage.css";
-import "./css/mainPage.css"
+import "./css/mainPage.css";
 
 function AdminMainPage() {
   const [data, setData] = useState([]); // State to hold all user data fetched from backend
@@ -82,58 +82,69 @@ function AdminMainPage() {
   };
 
   // Reject user status
-const handleReject = async (userName, email) => {
-  console.log("Reject button clicked for user:", userName, email); // Debugging log
+  const handleReject = async (userName, email) => {
+    console.log("Reject button clicked for user:", userName, email); // Debugging log
 
-  try {
-    // Step 1: Fetch orders for the user
-    const response = await fetch(`/order/get-business-orders/${userName}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      // Step 1: Fetch orders for the user
+      const response = await fetch(`/order/get-business-orders/${userName}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (!response.ok) {
-      console.error("Failed to fetch orders for user:", userName);
-      alert("Failed to check user orders.");
-      return;
+      // Step 2: Check the response status
+      if (response.status === 404) {
+        console.log(`No orders found for user: ${userName}`);
+        // Proceed to update status if no orders exist
+      } else if (!response.ok) {
+        console.error("Failed to fetch orders for user:", userName);
+        alert("Failed to check user orders.");
+        return;
+      } else {
+        const orders = await response.json();
+
+        // Step 3: Check if the user has orders
+        if (orders.length > 0) {
+          const hasNonProvidedOrders = orders.some(
+            (order) => order.status !== "Been Provided"
+          );
+
+          if (hasNonProvidedOrders) {
+            alert(
+              "Cannot reject this user as some orders have a status other than 'Been Provided'."
+            );
+            return;
+          }
+        }
+      }
+
+      // Step 4: Proceed to update status
+      const statusUpdateResponse = await fetch("/admin/updateStatus", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userName: userName, status: 0, email: email }),
+      });
+
+      console.log(
+        "Fetch request sent. Response status:",
+        statusUpdateResponse.status
+      ); // Debugging log
+
+      if (statusUpdateResponse.ok) {
+        alert("Status updated to Not Active successfully!");
+        fetchDataByStatus(0); // Refresh data for Not Active status
+      } else {
+        const errorMessage = await statusUpdateResponse.text();
+        console.error("Failed to update status:", errorMessage);
+        alert("Failed to update status.");
+      }
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert("An error occurred while updating status.");
     }
-
-    const orders = await response.json();
-
-    // Step 2: Check if the user has orders
-    if (orders.length > 0) {
-      alert("Cannot reject this user as they have existing orders.");
-      return;
-    }
-
-    // Step 3: Proceed to update status if no orders exist
-    const statusUpdateResponse = await fetch("/admin/updateStatus", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userName: userName, status: 0, email: email }),
-    });
-
-    console.log(
-      "Fetch request sent. Response status:",
-      statusUpdateResponse.status
-    ); // Debugging log
-
-    if (statusUpdateResponse.ok) {
-      alert("Status updated to Not Active successfully!");
-      fetchDataByStatus(0); // Refresh data for Not Active status
-    } else {
-      const errorMessage = await statusUpdateResponse.text();
-      console.error("Failed to update status:", errorMessage);
-      alert("Failed to update status.");
-    }
-  } catch (error) {
-    console.error("Error updating status:", error);
-    alert("An error occurred while updating status.");
-  }
-};
-
+  };
 
   // Function to convert status number to text
   const getStatusText = (status) => {
