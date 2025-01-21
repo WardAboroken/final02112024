@@ -224,103 +224,113 @@ const ShopOwnerOrdersPage = () => {
           </div>
 
           {/* Orders Table */}
-          <table className="orders-table">
-            <thead>
-              <tr>
-                <th>Order Number</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredOrders.map((order) => (
-                <tr key={order.orderNumber}>
-                  <td>{order.orderNumber}</td>
-                  <td>{new Date(order.date).toLocaleDateString()}</td>
-                  <td>
-                    <select
-                      value={order.status}
-                      onChange={(e) =>
-                        handleStatusChange(
-                          order.orderNumber,
-                          order.catalogNumbers,
-                          e.target.value
-                        )
-                      }
-                    >
-                      <option value="Received">Received</option>
-                      <option value="In preparation">In preparation</option>
-                      <option value="Ready">Ready</option>
-                      <option value="Underway">Underway</option>
-                      <option value="Been Provided">Been Provided</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button
-                      className="details-button"
-                      onClick={() => toggleDetails(order.orderNumber)}
-                    >
-                      Details
-                    </button>
-                    {visibleDetails[order.orderNumber] && (
-                      <>
-                        {/* Customer Details Table */}
-                        <table className="customer-details-table">
-                          <thead>
-                            <tr>
-                              <th>Customer Name</th>
-                              <th>Customer PhoneNumber</th>
-                              <th>Customer Location</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {orderDetails[order.orderNumber].orderDetails
-                              .slice(0, 1) // Show first item for customer details
-                              .map((product, index) => (
-                                <tr key={index}>
-                                  <td>{product.name}</td>
-                                  <td>{product.phoneNumber}</td>
-                                  <td>{product.address}</td>
-                                </tr>
-                              ))}
-                          </tbody>
-                        </table>
-
-                        {/* Product Details Table */}
-                        <table className="order-details-table">
-                          <thead>
-                            <tr>
-                              <th>Catalog Number</th>
-                              <th>Product Name</th>
-                              <th>Amount</th>
-                              <th>Size</th>
-                              <th>Color</th>
-                              <th>Price</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {orderDetails[order.orderNumber].orderDetails.map(
-                              (product, index) => (
-                                <tr key={index}>
-                                  <td>{product.catalogNumber}</td>
-                                  <td>{product.productName}</td>
-                                  <td>{product.amount}</td>
-                                  <td>{product.size}</td>
-                                  <td>{product.color}</td>
-                                  <td>${product.price}</td>
-                                </tr>
-                              )
-                            )}
-                          </tbody>
-                        </table>
-                      </>
-                    )}
-                  </td>
+          <div className="orders-container">
+            <table className="orders-table">
+              <thead>
+                <tr>
+                  <th>Order Number</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Details</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredOrders.length > 0 ? (
+                  filteredOrders.map((order) => (
+                    <tr key={order.orderNumber}>
+                      <td>{order.orderNumber}</td>
+                      <td>{new Date(order.date).toLocaleDateString()}</td>
+                      <td>
+                        <select
+                          value={order.status}
+                          onChange={(e) =>
+                            handleStatusChange(
+                              order.orderNumber,
+                              order.catalogNumbers,
+                              e.target.value
+                            )
+                          }
+                        >
+                          <option value="Received">Received</option>
+                          <option value="In preparation">In preparation</option>
+                          <option value="Ready">Ready</option>
+                          <option value="Underway">Underway</option>
+                          <option value="Been Provided">Been Provided</option>
+                        </select>
+                      </td>
+                      <td>
+                        <button
+                          className="details-button"
+                          onClick={() => toggleDetails(order.orderNumber)}
+                        >
+                          Details
+                        </button>
+                        {visibleDetails[order.orderNumber] && (
+                          <>
+                            {/* Customer Details Table */}
+                            <table className="customer-details-table">
+                              <thead>
+                                <tr>
+                                  <th>Customer Name</th>
+                                  <th>Customer PhoneNumber</th>
+                                  <th>Customer Location</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {orderDetails[order.orderNumber].orderDetails
+                                  .slice(0, 1) // Show first item for customer details
+                                  .map((product, index) => (
+                                    <tr key={index}>
+                                      <td>{product.name}</td>
+                                      <td>{product.phoneNumber}</td>
+                                      <td>{product.address}</td>
+                                    </tr>
+                                  ))}
+                              </tbody>
+                            </table>
+
+                            {/* Product Details Table */}
+                            <table className="order-details-table">
+                              <thead>
+                                <tr>
+                                  <th>Catalog Number</th>
+                                  <th>Product Name</th>
+                                  <th>Amount</th>
+                                  <th>Size</th>
+                                  <th>Color</th>
+                                  <th>Price</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {orderDetails[
+                                  order.orderNumber
+                                ].orderDetails.map((product, index) => (
+                                  <tr key={index}>
+                                    <td>{product.catalogNumber}</td>
+                                    <td>{product.productName}</td>
+                                    <td>{product.amount}</td>
+                                    <td>{product.size}</td>
+                                    <td>{product.color}</td>
+                                    <td>${product.price}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="no-orders-message">
+                      No orders found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </section>
         <div>
           <a className="sales-link" href="/shopOwnerMainPage#sales-overview">

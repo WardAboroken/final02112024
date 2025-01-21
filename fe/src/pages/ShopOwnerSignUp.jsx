@@ -143,32 +143,42 @@ function ShopOwnerSignUp() {
       console.log("Form data being sent:", formData);
 
       // Send POST request to backend endpoint
-      const response = await axios.post(
-        "/addNewUser/addUserShopOwner",
-        formData,
-        { headers: { "Content-Type": "application/json" } }
-      );
+      const response = await fetch("/addNewUser/addUserShopOwner", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Parse the response data
+      const data = await response.json();
 
       // Check if response is successful
-      if (response.status === 200) {
+      if (response.ok) {
         // Navigate to another page upon successful submission
-
         navigate("/Login");
 
         // Show an alert box for success (you can customize this as needed)
         window.alert(
-          "User added successfully! you need to wait the accept from the admin"
+          "User added successfully! You need to wait for admin approval."
         );
       } else {
-        // Show an alert box for failure (you can customize this as needed)
-        window.alert("Failed to sign up. Please try again.");
+        // Handle specific error message
+        if (data.message === "User already exist.") {
+          window.alert(
+            "This username or email is already registered. Please use a different one."
+          );
+        } else {
+          window.alert("Failed to sign up. Please try again.");
+        }
       }
     } catch (error) {
-      // Show an alert box for failure (you can customize this as needed)
+      // Handle general errors
+      console.error("Error during signup:", error);
       window.alert("Failed to sign up. Please try again.");
     }
   };
-
   return (
     <div className="login-body">
       <main className="login-container">

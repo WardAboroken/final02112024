@@ -32,13 +32,15 @@
   display: inline-block;
   padding: 10px 20px;
   margin: 0 10px;
-  background-color: #3a2d28;
-  color: #fff;
+  background-color: #473a35;
   text-decoration: none;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+.nav-link-p {
+  color: #ffffff;
 }
 
 .nav-link:hover {

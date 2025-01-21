@@ -24,7 +24,6 @@ router.post("/add-user-customer", async (req, res, next) => {
     res.status(500).json({ error: "An error occurred while adding the user" });
   }
 });
-
 router.post("/addUserShopOwner", async (req, res, next) => {
   console.log("Adding new user:", req.body);
   try {
@@ -36,6 +35,7 @@ router.post("/addUserShopOwner", async (req, res, next) => {
     if (result.success) {
       res.status(200).json({ message: "add User success!" }); // Sending success message if addition is successful
     } else {
+      console.log("userrrrrrrrr alreadyyyyyyyyyyyyy exsists")
       res.status(400).json({ message: "User already exist." }); // Sending error message if user already exists
     }
   } catch (error) {

@@ -11,7 +11,8 @@ async function updateCustomerProfile(user) {
     password, // Optional for profile picture update
     newPassword,
     preferredCategories,
-    address,
+    city,
+    street,
     profilePicturePath,
   } = user;
 
@@ -43,10 +44,11 @@ async function updateCustomerProfile(user) {
       sql += "preferredCategories = ?, ";
       params.push(categories);
     }
-    if (address) {
-      sql += "address = ?, ";
-      params.push(address);
-    }
+     if (city || street) {
+       const address = `city :  ${city || ""}  /  street : ${street || ""}`.trim();
+       sql += "address = ?, ";
+       params.push(address);
+     }
     if (profilePicturePath) {
       sql += "profilePicturePath = ?, ";
       params.push(profilePicturePath);

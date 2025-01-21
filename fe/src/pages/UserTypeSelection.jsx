@@ -18,12 +18,12 @@ function UserTypeSelection() {
         <div className="button-container">
           {/* Navigation link to Shop Owner Sign Up page */}
           <NavLink to="/ShopOwnerSignUp" className="nav-link">
-            Shop Owner
+            <p className="nav-link-p"> Shop Owner</p>
           </NavLink>
 
           {/* Navigation link to Customer Sign Up page */}
           <NavLink to="/CustomerSignUp" className="nav-link">
-            Customer
+            <p className="nav-link-p">Customer</p>
           </NavLink>
         </div>
       </main>

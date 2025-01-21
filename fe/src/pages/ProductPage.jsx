@@ -128,15 +128,21 @@ const ProductPage = () => {
             <p>
               <span>Price:</span> ${product.price}
             </p>
-            <p>
-              <span>Description:</span> {product.description}
-            </p>
-            <p>
-              <span>Size:</span> {product.size}
-            </p>
-            <p>
-              <span>Color:</span> {product.color}
-            </p>
+            {product.description && product.description.length > 0 && (
+              <p>
+                <span>Description:</span> {product.description}
+              </p>
+            )}
+            {product.size && product.size.length > 0 && (
+              <p>
+                <span>Size:</span> {product.size}
+              </p>
+            )}
+            {product.color && product.color.length > 0 && (
+              <p>
+                <span>Color:</span> {product.color}
+              </p>
+            )}
             <button className="add-to-cart-button" onClick={addToCart}>
               Add to Cart
             </button>

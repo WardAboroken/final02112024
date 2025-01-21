@@ -149,57 +149,71 @@ function EditProfile() {
     setSelectedCategories(updatedCategories);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError("");
-    setSuccess("");
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  setError("");
+  setSuccess("");
 
+  if (
+    formData.newPassword &&
+    formData.newPassword !== formData.confirmNewPassword
+  ) {
+    setError("New passwords do not match.");
+    return;
+  }
+
+  const updatedFields = {
+    userName: formData.userName, // Include userName
+    password: formData.password, // Include password
+  };
+
+  // Add city and street if selected
+  if (formData.selectedCity) {
+    updatedFields.city = formData.selectedCity;
+  }
+  if (formData.selectedStreet) {
+    updatedFields.street = formData.selectedStreet;
+  }
+
+  // Add other fields that have changed
+  Object.keys(formData).forEach((key) => {
     if (
-      formData.newPassword &&
-      formData.newPassword !== formData.confirmNewPassword
+      formData[key] &&
+      formData[key] !== userInfo[key] &&
+      key !== "selectedCity" &&
+      key !== "selectedStreet"
     ) {
-      setError("New passwords do not match.");
-      return;
+      updatedFields[key] = formData[key];
     }
+  });
 
-    const updatedFields = {
-      userName: formData.userName, // Include userName
-      password: formData.password, // Include password
-    };
-    console.log("updatedFields >> ", updatedFields);
+  if (selectedCategories.length) {
+    updatedFields.preferredCategories = JSON.stringify(selectedCategories);
+  }
 
-    Object.keys(formData).forEach((key) => {
-      if (formData[key] && formData[key] !== userInfo[key]) {
-        updatedFields[key] = formData[key];
-      }
+  try {
+    const formDataToSend = new FormData();
+    Object.entries(updatedFields).forEach(([key, value]) => {
+      formDataToSend.append(key, value);
     });
 
-    if (selectedCategories.length) {
-      updatedFields.preferredCategories = JSON.stringify(selectedCategories);
+    if (image) {
+      formDataToSend.append("profilePicture", image);
     }
 
-    try {
-      const formDataToSend = new FormData();
-      Object.entries(updatedFields).forEach(([key, value]) => {
-        formDataToSend.append(key, value);
-      });
+    const response = await fetch("/updateProfile/updateCustomerProfile", {
+      method: "POST",
+      body: formDataToSend,
+    });
 
-      if (image) {
-        formDataToSend.append("profilePicture", image);
-      }
+    if (!response.ok) throw new Error("Profile update failed");
 
-      const response = await fetch("/updateProfile/updateCustomerProfile", {
-        method: "POST",
-        body: formDataToSend,
-      });
+    window.alert("Profile updated successfully!");
+  } catch (error) {
+    window.alert("Error updating profile: " + error.message);
+  }
+};
 
-      if (!response.ok) throw new Error("Profile update failed");
-
-      setSuccess("Profile updated successfully!");
-    } catch (error) {
-      setError("Error updating profile: " + error.message);
-    }
-  };
 
   return (
     <div className="editCustomerProfile-body">
@@ -216,7 +230,16 @@ function EditProfile() {
             />
           )}
           <input type="file" onChange={handleImageChange} />
-
+          <p>User name</p>
+          <input
+            type="text"
+            name="userName"
+            placeholder="Username"
+            value={formData.userName}
+            onChange={handleInputChange}
+            readOnly
+          />
+          <p>Name</p>
           <input
             type="text"
             name="name"
@@ -224,13 +247,7 @@ function EditProfile() {
             value={formData.name}
             onChange={handleInputChange}
           />
-          <input
-            type="text"
-            name="userName"
-            placeholder="Username"
-            value={formData.userName}
-            onChange={handleInputChange}
-          />
+          <p>Your email</p>
           <input
             type="email"
             name="email"
@@ -238,6 +255,7 @@ function EditProfile() {
             value={formData.email}
             onChange={handleInputChange}
           />
+          <p>Phone number</p>
           <input
             type="tel"
             name="phoneNumber"
@@ -266,7 +284,7 @@ function EditProfile() {
             value={formData.confirmNewPassword}
             onChange={handleInputChange}
           />
-
+          <p>Address</p>
           <input
             type="text"
             name="selectedCity"
@@ -289,7 +307,7 @@ function EditProfile() {
               </option>
             ))}
           </select>
-
+          <p>Your favorite categories</p>
           <div className="category-list">
             {Object.entries(categories).map(([category, id]) => (
               <label key={id}>

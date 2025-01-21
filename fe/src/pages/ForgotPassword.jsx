@@ -36,7 +36,9 @@ function ForgotPassword() {
         navigate("/Login"); // Redirect to the login page
       }
     } catch (error) {
-      window.alert("An error occurred. Please try again.");
+      window.alert(
+        "The information you provided does not match our records.\n Please double-check your details and try again."
+      );
       console.error("Error sending recovery email:", error);
     }
   };
