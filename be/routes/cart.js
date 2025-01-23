@@ -10,7 +10,6 @@ router.get("/", (req, res) => {
 });
 
 
-
 // Route to add a new item to the cart
 router.post("/", (req, res) => {
   const {
