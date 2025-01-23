@@ -75,7 +75,7 @@ function ShopOwnerMainPage() {
     const fetchOutOfStockProducts = async () => {
       try {
         const response = await fetch(
-          `/order/get-out-of-stock-products/${userInfo.userName}`
+          `/order/getOutOfStockProducts/${userInfo.userName}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -100,7 +100,7 @@ function ShopOwnerMainPage() {
     const fetchNewOrders = async () => {
       try {
         const response = await fetch(
-          `/order/get-business-new-orders/${userInfo.userName}`
+          `/order/getBusinessNewOrders/${userInfo.userName}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -150,7 +150,7 @@ function ShopOwnerMainPage() {
         const isSameDay = fetchStartDate === fetchEndDate;
 
         const response = await fetch(
-          `/order/get-been-provided-orders/${
+          `/order/getBeenProvidedOrders/${
             userInfo.userName
           }?startDate=${encodeURIComponent(
             fetchStartDate

@@ -1,5 +1,5 @@
 const express = require("express");
-const addCustomerUser = require("../database/queries/add-user-customer");
+const addCustomerUser = require("../database/queries/addUserCustomer");
 const addUserShopOwner = require("../database/queries/addUserShopOwner");
 const router = express.Router();
 
@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(express.json());
 
 // POST /admin/add-user
-router.post("/add-user-customer", async (req, res, next) => {
+router.post("/addUserCustomer", async (req, res, next) => {
   console.log("Adding new user:", req.body);
   try {
     const user = req.body;
@@ -24,6 +24,9 @@ router.post("/add-user-customer", async (req, res, next) => {
     res.status(500).json({ error: "An error occurred while adding the user" });
   }
 });
+
+
+
 router.post("/addUserShopOwner", async (req, res, next) => {
   console.log("Adding new user:", req.body);
   try {
@@ -35,7 +38,7 @@ router.post("/addUserShopOwner", async (req, res, next) => {
     if (result.success) {
       res.status(200).json({ message: "add User success!" }); // Sending success message if addition is successful
     } else {
-      console.log("userrrrrrrrr alreadyyyyyyyyyyyyy exsists")
+
       res.status(400).json({ message: "User already exist." }); // Sending error message if user already exists
     }
   } catch (error) {

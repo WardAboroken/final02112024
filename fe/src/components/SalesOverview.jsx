@@ -49,7 +49,7 @@ function SalesOverview({ userInfo }) {
       try {
         // Fetch data from the server
         const response = await fetch(
-          `/order/get-been-provided-orders/${
+          `/order/getBeenProvidedOrders/${
             userInfo.userName
           }?startDate=${encodeURIComponent(
             fetchStartDate

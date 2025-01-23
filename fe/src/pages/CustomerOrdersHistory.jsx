@@ -96,7 +96,7 @@ const CustomerOrdersHistory = () => {
       setVisibleDetails((prev) => ({ ...prev, [orderNumber]: false }));
     } else {
       try {
-        const response = await fetch(`/order/getOrderDetails/${orderNumber}`, {
+        const response = await fetch(`/order/getOrderDetailsByOrderNumber/${orderNumber}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });

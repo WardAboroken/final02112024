@@ -87,7 +87,7 @@ function AdminMainPage() {
 
     try {
       // Step 1: Fetch orders for the user
-      const response = await fetch(`/order/get-business-orders/${userName}`, {
+      const response = await fetch(`/order/getBusinessOrders/${userName}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

@@ -41,7 +41,7 @@ const ShopOwnerOrdersPage = () => {
 
         // Fetch orders for the business owner
         const response = await fetch(
-          `/order/get-business-orders/${businessOwnerId}`
+          `/order/getBusinessOrders/${businessOwnerId}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -75,7 +75,7 @@ const ShopOwnerOrdersPage = () => {
     if (!orderNumber) return;
 
     try {
-      const response = await fetch(`/order/get-order-details`, {
+      const response = await fetch(`/order/getOrderDetails`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ orderNumber, userName }),
@@ -123,7 +123,7 @@ const ShopOwnerOrdersPage = () => {
   const updateOrderStatus = async (orderNumber, catalogNumbers, newStatus) => {
     try {
       const response = await fetch(
-        `/order/update-order-status/${orderNumber}`,
+        `/order/updateOrderStatus/${orderNumber}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

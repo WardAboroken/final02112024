@@ -130,7 +130,7 @@ function CustomerSignUp() {
 
     // Send user data to the server
     try {
-      const response = await fetch("/addNewUser/add-user-customer", {
+      const response = await fetch("/addNewUser/addUserCustomer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
