@@ -7,8 +7,6 @@ const paypal = require("@paypal/checkout-server-sdk"); // Import PayPal SDK
 const doQuery = require("../database/query"); // Ensure this is the correct import for your query function
 const updateOrderStatus = require("./../database/queries/updateOrderStatusInDB");
 const getPaypalEmailForProducts = require("../database/queries/getPaypalEmailForProducts");
-// const getCompletedOrders = require("../database/queries/getCompletedOrders");
-// const getCatalogNumbersForOrder = require("../database/queries/getCatalogNumbersForOrder");
 const getOutOfStockProducts = require("../database/queries/getOutOfStockProducts");
 const getBusinessNewOrders = require("../database/queries/getBusinessNewOrders");
 const getBusinessOrders = require("../database/queries/getBusinessOrders");
@@ -17,135 +15,10 @@ const getOrderDetails = require("../database/queries/getOrderDetails");
 const getUserOrders = require("../database/queries/getUserOrders");
 const getOrderDetailsByOrderNumber = require("../database/queries/getOrderDetailsByOrderNumber");
 
-// // Route to create PayPal orders for multiple shops
-// router.post("/createOrders", async (req, res) => {
-//   const { items, shippingAddress } = req.body; // Array of cart items and shipping address
 
-//   try {
-//     // Fetch the PayPal email for each product
-//     const emailMap = await getPaypalEmailForProducts(items);
 
-//     // Group items by shop (paypalEmail)
-//     const itemsGroupedByShop = items.reduce((groupedItems, item) => {
-//       const paypalEmail = emailMap[item.catalogNumber]; // Get the PayPal email for each item
-//       if (!groupedItems[paypalEmail]) {
-//         groupedItems[paypalEmail] = [];
-//       }
-//       groupedItems[paypalEmail].push(item);
-//       return groupedItems;
-//     }, {});
 
-//     const orders = {}; // Store order IDs for each shop
 
-//     for (const [paypalEmail, shopItems] of Object.entries(itemsGroupedByShop)) {
-//       const totalAmount = shopItems.reduce(
-//         (total, item) => total + item.price * item.quantity,
-//         0
-//       );
-
-//       const request = new paypal.orders.OrdersCreateRequest();
-//       request.prefer("return=representation");
-//       request.requestBody({
-//         intent: "CAPTURE",
-//         purchase_units: [
-//           {
-//             amount: {
-//               currency_code: "USD",
-//               value: totalAmount.toFixed(2),
-//             },
-//             payee: {
-//               email_address: paypalEmail, // Use the fetched PayPal email
-//             },
-//           },
-//         ],
-//       });
-
-//       const order = await client.execute(request);
-//       orders[paypalEmail] = order.result.id; // Store order ID for this shop
-//     }
-
-//     res.status(201).json({ success: true, orders });
-//   } catch (error) {
-//     console.error("Error creating PayPal orders:", error);
-//     res.status(500).json({
-//       success: false,
-//       message: "An error occurred while creating PayPal orders.",
-//     });
-//   }
-// });
-
-// // Capture PayPal Orders for Multiple Shops
-// router.post("/captureOrders", async (req, res) => {
-//   const { orderIds, shippingAddress } = req.body; // Object with order IDs to capture and shipping address
-//   const captureResults = {};
-
-//   try {
-//     for (const [paypalEmail, orderId] of Object.entries(orderIds)) {
-//       const request = new paypal.orders.OrdersCaptureRequest(orderId);
-//       request.requestBody({});
-
-//       const capture = await client.execute(request);
-//       captureResults[paypalEmail] = capture.result; // Store capture result for this shop
-
-//       // After successful payment capture, add the order to the database
-//       const shopItems = capture.result.purchase_units[0].reference_id; // Assuming you pass necessary cartItems and userName in the request
-//       await finalizeOrderForShop(userName, shippingAddress, shopItems);
-//     }
-
-//     res.status(200).json({ success: true, captures: captureResults });
-//   } catch (error) {
-//     console.error("Error capturing PayPal orders:", error);
-//     res.status(500).json({
-//       success: false,
-//       message: "An error occurred while capturing PayPal orders.",
-//     });
-//   }
-// });
-
-// Endpoint to get completed orders for a specific business owner
-// doneeeeeeee
-// router.get("/getCompletedOrders/:userName", async (req, res) => {
-//   const { userName } = req.params;
-
-//   try {
-//     const completedOrders = await getCompletedOrders(userName);
-
-//     if (!completedOrders || completedOrders.length === 0) {
-//       return res.status(404).json({
-//         message: "No completed orders found for this business owner.",
-//       });
-//     }
-
-//     res.json(completedOrders);
-//   } catch (error) {
-//     console.error("Error fetching completed orders:", error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// });
-
-// Endpoint to get catalog numbers for a specific order and business owner
-// router.get("/getCatalogNumbersForOrder/:orderNumber/:userName",
-//   async (req, res) => {
-//     const { orderNumber, userName } = req.params;
-
-//     try {
-//       const filteredCatalogNumbers = await getCatalogNumbersForOrder(
-//         orderNumber,
-//         userName
-//       );
-
-//       if (filteredCatalogNumbers.length === 0) {
-//         console.log("No catalog numbers found for this user and order.");
-//         return res.json([]); // Return an empty array if no catalog numbers found
-//       }
-
-//       res.json(filteredCatalogNumbers);
-//     } catch (error) {
-//       console.error("Error fetching catalog numbers:", error);
-//       res.status(500).json({ error: "Internal Server Error" });
-//     }
-//   }
-// );
 
 // Route to get out-of-stock products for a specific business owner
 // doneeeeeeeeeee
@@ -217,27 +90,87 @@ router.get("/getBusinessOrders/:userName", async (req, res) => {
 });
 
 // doneeeeeeeeeeeeee
+// router.get("/getBeenProvidedOrders/:userName", async (req, res) => {
+//   const { userName } = req.params;
+//   const { startDate, endDate } = req.query;
+
+//   console.log("Received startDate:", startDate);
+//   console.log("Received endDate:", endDate);
+
+//   try {
+//     const orders = await getBeenProvidedOrders(userName, startDate, endDate);
+
+//     if (!orders) {
+//       return res.status(404).json({
+//         message:
+//           "No 'Been Provided' orders found for this business owner within the given date range.",
+//       });
+//     }
+
+//     console.log(
+//       `Been Provided orders for ${userName} between ${startDate} and ${endDate} >> `,
+//       orders
+//     );
+
+//     res.json(orders);
+//   } catch (error) {
+//     console.error("Error fetching 'Been Provided' orders:", error);
+//     res.status(500).json({ message: "Error fetching 'Been Provided' orders." });
+//   }
+// });
+
+
+
 router.get("/getBeenProvidedOrders/:userName", async (req, res) => {
   const { userName } = req.params;
-  const { startDate, endDate } = req.query;
-
+  const { startDate, endDate } = req.query; // Receive startDate and endDate as query parameters
   console.log("Received startDate:", startDate);
   console.log("Received endDate:", endDate);
 
   try {
-    const orders = await getBeenProvidedOrders(userName, startDate, endDate);
+    // Base query
+    let ordersQuery = `
+  SELECT o.orderNumber, DATE(o.orderDate) AS date, ocp.orderStatus AS status, 
+         SUM(p.price * ocp.productQuantity) AS totalCost
+  FROM orderscontainsproducts ocp
+  JOIN orders o ON ocp.orderNumber = o.orderNumber
+  JOIN products p ON ocp.catalogNumber = p.catalogNumber
+  WHERE p.userName = ? AND ocp.orderStatus = 'Been Provided'
+`;
 
-    if (!orders || orders.length === 0) {
+    const queryParams = [userName];
+    console.log("Query Params:", queryParams);
+    // Optional date range filter
+    // Modify the WHERE clause to ignore the time component when filtering by date
+    // Filter by date using the DATE() function in SQL to exclude orders before or after the date range
+    if (startDate) {
+      ordersQuery += ` AND DATE(o.orderDate) >= ?`;
+      queryParams.push(startDate);
+    }
+    if (endDate) {
+      ordersQuery += ` AND DATE(o.orderDate) <= ?`;
+      queryParams.push(endDate);
+    }
+
+    // Add GROUP BY and ORDER BY clauses
+    ordersQuery += `
+  GROUP BY o.orderNumber, ocp.orderStatus, DATE(o.orderDate)
+  ORDER BY DATE(o.orderDate) DESC;
+`;
+
+    // Run query with dynamic parameters
+    const orders = await doQuery(ordersQuery, queryParams);
+    console.log(
+      `Been Provided orders to ${userName} between ${startDate} and ${endDate} >> `,
+      orders
+    );
+
+    if (!orders) {
       return res.status(404).json({
         message:
           "No 'Been Provided' orders found for this business owner within the given date range.",
       });
     }
-
-    console.log(
-      `Been Provided orders for ${userName} between ${startDate} and ${endDate} >> `,
-      orders
-    );
 
     res.json(orders);
   } catch (error) {
@@ -246,7 +179,14 @@ router.get("/getBeenProvidedOrders/:userName", async (req, res) => {
   }
 });
 
-// doneeeeeeeeeeeeee ward
+
+
+
+
+
+
+
+
 router.put("/updateOrderStatus/:orderNumber", async (req, res) => {
   const { orderNumber } = req.params;
   const { catalogNumbers, status } = req.body; // Get catalog numbers and status from the request body

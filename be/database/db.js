@@ -10,7 +10,7 @@ const dbConfig = {
   user: "root", // Username for MySQL
   password: "", // Password for MySQL (empty if no password)
   database: "final_project", // Your database name
-  port: 3308, // Custom port since you're using 3308
+  port: 3306, // Custom port since you're using 3308
 };
 
 let connection;

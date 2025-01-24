@@ -1,5 +1,5 @@
 const express = require("express");
-const addCustomerUser = require("../database/queries/addUserCustomer");
+const addUserCustomer = require("../database/queries/addUserCustomer");
 const addUserShopOwner = require("../database/queries/addUserShopOwner");
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post("/addUserCustomer", async (req, res, next) => {
   console.log("Adding new user:", req.body);
   try {
     const user = req.body;
-    const result = await addCustomerUser(user);
+    const result = await addUserCustomer(user);
 
     // Sending a response to the client
     if (result.success) {

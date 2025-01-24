@@ -31,7 +31,7 @@ const getBeenProvidedOrders = async (userName, startDate, endDate) => {
     ORDER BY DATE(o.orderDate) DESC;
   `;
 
-  const [orders] = await db.query(query, queryParams);
+  const orders = await db.query(query, queryParams);
   return orders; // Returns the orders or an empty array
 };
 

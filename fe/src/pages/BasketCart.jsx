@@ -246,8 +246,7 @@ const BasketCart = () => {
 
       if (!placeOrderResponse.ok) throw new Error("Failed to place order");
 
-      const result = await placeOrderResponse.json();
-      alert(`Order placed successfully! Order Number: ${result.orderNumber}`);
+      alert(`Order placed successfully!`);
 
       setCartItems((prevItems) =>
         prevItems.filter(

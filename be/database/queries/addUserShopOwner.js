@@ -22,12 +22,11 @@ async function addShopOwnerUser(user) {
     console.log("User data in addShopOwnerUser:", user); // Log the user data to check
     // Check if the user already exists
     const existingUser = await doQuery(
-      `SELECT * FROM businessowner WHERE userName = ? OR email=?`,
+      ` SELECT * FROM businessowner WHERE userName = ? OR email = ?`,
       [userName, email]
     );
 
     if (existingUser.length > 0) {
-      console.log("returnnnnnnnnnnnnn falseeeeeeee");
       return { success: false, message: "User already exists" };
     }
 

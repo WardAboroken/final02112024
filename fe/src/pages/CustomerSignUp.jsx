@@ -140,7 +140,7 @@ function CustomerSignUp() {
 
       const data = await response.json();
       if (response.ok) {
-        navigate("/ShopMainPage");
+        navigate("/Login");
         window.alert("User added successfully!");
       } else {
         if (data.message === "User already exist.") {
