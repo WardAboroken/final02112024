@@ -25,8 +25,6 @@ async function checkUserType(userInfo) {
       const userType = results[0].userType; // The user type (either 'normal' or the typeOfUser from businessowner)
 
       // Compare the plain text password with the hashed password from the database
-      console.log("theeeeeeeee passsssss issss", psw);
-      console.log("theeeeeeeee passsssss issss", dbPasswordHash);
       const isMatch = await bcrypt.compare(psw, dbPasswordHash);
 
       if (isMatch) {

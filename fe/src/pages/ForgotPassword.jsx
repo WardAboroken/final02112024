@@ -31,7 +31,7 @@ function ForgotPassword() {
       // Check if the recovery request was successful
       if (response.status === 200) {
         window.alert(
-          "You have successfully requested a password reset. Please check your Gmail for further instructions."
+          "You have successfully requested a password reset. Please check your Email for further instructions."
         );
         navigate("/Login"); // Redirect to the login page
       }
